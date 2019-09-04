@@ -1,0 +1,12 @@
+.beer-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__item {
+    width: 400px;
+    height: 350px;
+    margin: 15px;
+  }
+}

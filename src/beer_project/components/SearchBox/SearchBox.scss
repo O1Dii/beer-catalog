@@ -1,0 +1,26 @@
+@import "../../variables.scss";
+
+.search-box {
+  display: flex;
+
+  &__input {
+    display: flex;
+
+    padding: 5px;
+
+    border: none;
+    border-bottom: 1px solid $main-color;
+
+    flex-grow: 1;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__icon {
+    margin: auto 10px;
+
+    color: $main-color;
+  }
+}
