@@ -60,7 +60,8 @@
     "redux-actions": "^2.6.5",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "use-onclickoutside": "^0.3.1"
   },
   "homepage": "https://github.com/O1Dii/Beer-Catalog#readme"
 }

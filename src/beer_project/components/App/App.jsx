@@ -1,11 +1,11 @@
 import React from 'react';
 
-import LandingPage from '../LandingPage/LandingPage';
+import PagesRouter from '../PagesRouter/PagesRouter';
 
 import './App.scss';
 
 function App() {
-  return <LandingPage />;
+  return <PagesRouter />;
 }
 
 export default App;

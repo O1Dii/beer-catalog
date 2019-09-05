@@ -1,0 +1,38 @@
+@import "../../variables.scss";
+
+.side-menu {
+  border-right: 1px solid $main-color;
+  background-color: $main-text-color;
+
+  &__title-container {
+    height: 80px;
+    padding: 15px 20px;
+
+    background-color: $primary-color;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__first-item-container,
+  &__second-item-container {
+    display: flex;
+
+    margin: 20px 20px;
+
+    color: $secondary-text-color;
+
+    align-items: center;
+  }
+
+  &__first-icon,
+  &__second-icon {
+    font-size: 12px;
+  }
+
+  &__first-item,
+  &__second-item {
+    margin: 0 0 0 10px;
+  }
+}

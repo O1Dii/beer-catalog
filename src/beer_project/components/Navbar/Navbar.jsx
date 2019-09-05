@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import './Navbar.scss';
 
 function Navbar(props) {
-  const { className } = props;
+  const { className, onMenuButtonClick } = props;
 
   return (
     <div className={classNames('navbar', className)}>
-      <i className="navbar__menu-icon fas fa-bars" />
+      <button type="button" onClick={onMenuButtonClick}>
+        <i className="navbar__menu-icon fas fa-bars" />
+      </button>
       <p className="navbar__title">Beer catalog</p>
       <i className="navbar__options-icon fas fa-ellipsis-v" />
     </div>
@@ -17,6 +19,7 @@ function Navbar(props) {
 }
 
 Navbar.propTypes = {
+  onMenuButtonClick: PropTypes.func.isRequired,
   className: PropTypes.string,
 };
 

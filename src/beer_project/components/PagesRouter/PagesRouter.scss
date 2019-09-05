@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.pages-router {
+  position: relative;
+
+  &__navbar {
+    width: 100%;
+  }
+
+  &__side-menu {
+    position: absolute;
+    left: -200px;
+
+    width: 200px;
+    height: 100%;
+
+    transition: left 500ms;
+  }
+
+  &__side-menu_open {
+    left: -1px;
+  }
+}

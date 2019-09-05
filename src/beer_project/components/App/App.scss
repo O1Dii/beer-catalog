@@ -1,5 +1,9 @@
+@import "../../variables.scss";
+
 body {
   margin: 0;
+
+  color: $main-text-color;
 }
 
 button {

@@ -1,0 +1,21 @@
+@import "../../variables.scss";
+
+.favorites-page {
+  display: flex;
+  flex-direction: column;
+
+  color: $secondary-text-color;
+
+  align-items: center;
+
+  &__title {
+    margin: 20px auto;
+
+    font-size: 35px;
+  }
+
+  &__item {
+    width: 800px;
+    margin-bottom: 40px;
+  }
+}

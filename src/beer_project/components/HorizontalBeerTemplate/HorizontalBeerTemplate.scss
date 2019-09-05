@@ -1,0 +1,61 @@
+@import "../../variables.scss";
+
+.horizontal-beer-template {
+  display: flex;
+
+  padding-top: 30px;
+
+  box-shadow: 0 5px 5px $main-color;
+
+  &__image {
+    width: 150px;
+    height: 150px;
+    margin: 0 50px auto 10px;
+  }
+
+  &__left-container {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  &__name {
+    margin: 0 20px;
+
+    font-size: 30px;
+  }
+
+  &__description {
+    margin: 0 20px 10px;
+
+    color: $main-color;
+
+    font-size: 18px;
+  }
+
+  &__text {
+    margin: 0 20px 10px;
+  }
+
+  &__buttons-container {
+    margin: 20px;
+  }
+
+  &__open-button {
+    margin-right: 15px;
+
+    text-transform: uppercase;
+
+    font-size: 15px;
+  }
+
+  &__favorite-button {
+    text-transform: uppercase;
+
+    font-size: 15px;
+  }
+}
