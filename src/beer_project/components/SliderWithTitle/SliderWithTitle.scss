@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+
+.slider-with-title {
+  display: flex;
+
+  color: $secondary-text-color;
+
+  align-items: center;
+
+  &__title {
+    display: flex;
+
+    flex-grow: 1;
+  }
+
+  &__value {
+    margin-right: 20px;
+
+    font-size: 18px;
+  }
+
+  &__slider {
+    width: 30%;
+  }
+}

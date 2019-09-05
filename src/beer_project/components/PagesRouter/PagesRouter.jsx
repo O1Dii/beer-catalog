@@ -33,7 +33,7 @@ function PagesRouter() {
         />
       </div>
       <Navbar className="pages-router__navbar" onMenuButtonClick={onMenuOpen} />
-      <FavoritesPage />
+      <LandingPage />
     </div>
   );
 }
