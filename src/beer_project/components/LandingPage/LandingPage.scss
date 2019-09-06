@@ -8,7 +8,7 @@
 
   &__search-box {
     width: 40%;
-    margin: 50px auto 30px;
+    margin: 50px auto 10px;
   }
 
   &__filters {
@@ -17,5 +17,6 @@
 
   &__beer-grid {
     width: 95%;
+    margin-top: 20px;
   }
 }

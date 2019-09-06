@@ -7,7 +7,7 @@ function SearchBox({ className }) {
   return (
     <label className={classNames('search-box', className)}>
       <input placeholder="Search beers..." type="text" className="search-box__input" />
-      <i className="fas fa-search search-box__icon" />
+      <button type="button" className="fas fa-search search-box__icon" />
     </label>
   );
 }

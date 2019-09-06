@@ -5,12 +5,15 @@ import VerticalBeerTemplate from '../VerticalBeerTemplate/VerticalBeerTemplate';
 
 import './BeerGrid.scss';
 
-function BeerGrid({ className }) {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+function BeerGrid({ className, beers }) {
   return (
     <div className={classNames('beer-grid', className)}>
-      {arr.map(item => (
-        <VerticalBeerTemplate className="beer-grid__item" />
+      {beers.map(item => (
+        <VerticalBeerTemplate
+          title={item.get('name')}
+          tagline={item.get('tagline')}
+          className="beer-grid__item"
+        />
       ))}
     </div>
   );
