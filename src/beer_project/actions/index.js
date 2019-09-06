@@ -22,3 +22,5 @@ export const getBeersData = () => (dispatch) => {
     dispatch(receiveBeers(JSON.parse(xhr.responseText)));
   };
 };
+
+export const searchChange = createAction('SEARCH_CHANGE');

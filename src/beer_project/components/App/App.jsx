@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PagesRouter from '../PagesRouter/PagesRouter';
+import PagesRouter from '../../containers/PagesRouter';
 
 import './App.scss';
 

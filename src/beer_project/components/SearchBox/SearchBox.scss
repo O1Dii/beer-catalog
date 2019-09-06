@@ -1,7 +1,9 @@
 @import "../../variables.scss";
 
 .search-box {
-  display: flex;
+  &__label {
+    display: flex;
+  }
 
   &__input {
     display: flex;
@@ -22,5 +24,9 @@
     margin: auto 10px;
 
     color: $main-color;
+  }
+
+  &__filters {
+    width: 100%;
   }
 }

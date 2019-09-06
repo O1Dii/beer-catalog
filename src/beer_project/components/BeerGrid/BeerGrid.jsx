@@ -10,8 +10,10 @@ function BeerGrid({ className, beers }) {
     <div className={classNames('beer-grid', className)}>
       {beers.map(item => (
         <VerticalBeerTemplate
+          key={item.get('id')}
           title={item.get('name')}
           tagline={item.get('tagline')}
+          image={item.get('image_url')}
           className="beer-grid__item"
         />
       ))}

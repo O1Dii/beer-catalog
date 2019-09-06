@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
 
 import SearchBox from '../SearchBox/SearchBox';
-import Filters from '../Filters/Filters';
-
-import BeerGrid from '../../containers/BeerGrid';
+import BeerGrid from '../BeerGrid/BeerGrid';
 
 import './LandingPage.scss';
 
-function LandingPage({ onMount }) {
+function LandingPage({
+  onMount, beers, searchText, onSearchChange,
+}) {
   useEffect(() => {
     onMount();
-  });
+  }, [searchText]);
 
   return (
     <div className="landing-page">
-      <SearchBox className="landing-page__search-box" />
-      {/* <Filters className="landing-page__filters" /> */}
-      <BeerGrid className="landing-page__beer-grid" />
+      <SearchBox
+        className="landing-page__search-box"
+        onSubmit={onSearchChange}
+        searchText={searchText}
+      />
+      <BeerGrid className="landing-page__beer-grid" beers={beers} />
     </div>
   );
 }

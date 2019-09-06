@@ -3,10 +3,12 @@ import classNames from 'classnames';
 
 import './VerticalBeerTemplate.scss';
 
-function VerticalBeerTemplate({ className, title, tagline }) {
+function VerticalBeerTemplate({
+  className, title, tagline, image,
+}) {
   return (
     <div className={classNames('vertical-beer-template', className)}>
-      <img src="assets/img/kitty.jpg" className="vertical-beer-template__image" alt="beer" />
+      <img src={image} className="vertical-beer-template__image" alt="beer" />
       <div className="vertical-beer-template__lower-container">
         <p className="vertical-beer-template__name">{title}</p>
         <p className="vertical-beer-template__description">{tagline}</p>

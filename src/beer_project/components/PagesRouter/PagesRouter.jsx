@@ -6,11 +6,13 @@ import Navbar from '../Navbar/Navbar';
 
 import SideMenu from '../SideMenu/SideMenu';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
-import LandingPage from '../../containers/LandingPage';
+import LandingPage from '../LandingPage/LandingPage';
 
 import './PagesRouter.scss';
 
-function PagesRouter() {
+function PagesRouter({
+  onLandingPageMount, beers, searchText, onSearchChange,
+}) {
   const [open, setOpen] = useState(false);
 
   const onMenuOpen = () => {
@@ -33,24 +35,32 @@ function PagesRouter() {
               'pages-router__side-menu_open': open,
             })}
           >
-            <Link to="/">
-              <button type="button" className="side-menu__first-item-container">
-                <i className="side-menu__first-icon fas fa-inbox" />
-                <p className="side-menu__first-item">Home</p>
-              </button>
+            <Link to="/" className="side-menu__item-container">
+              <i className="side-menu__icon fas fa-inbox" />
+              <p className="side-menu__item">Home</p>
             </Link>
-            <Link to="/favorites/">
-              <button type="button" className="side-menu__second-item-container">
-                <i className="side-menu__second-icon fas fa-star" />
-                <p className="side-menu__second-item">Favorites</p>
-              </button>
+            <Link to="/favorites/" className="side-menu__item-container">
+              <i className="side-menu__icon fas fa-star" />
+              <p className="side-menu__item">Favorites</p>
             </Link>
           </SideMenu>
         </div>
         <Navbar className="pages-router__navbar" onMenuButtonClick={onMenuOpen} />
 
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/favorites/" component={FavoritesPage} />
+        <Route
+          path="/"
+          exact
+          render={props => (
+            <LandingPage
+              {...props}
+              onMount={onLandingPageMount}
+              beers={beers}
+              searchText={searchText}
+              onSearchChange={onSearchChange}
+            />
+          )}
+        />
+        <Route path="/favorites/" render={props => <FavoritesPage {...props} />} />
       </div>
     </Router>
   );

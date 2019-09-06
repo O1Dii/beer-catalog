@@ -15,24 +15,23 @@
     margin: 0;
   }
 
-  &__first-item-container,
-  &__second-item-container {
+  &__item-container {
     display: flex;
 
     margin: 20px 20px;
+
+    text-decoration: none;
 
     color: $secondary-text-color;
 
     align-items: center;
   }
 
-  &__first-icon,
-  &__second-icon {
+  &__icon {
     font-size: 12px;
   }
 
-  &__first-item,
-  &__second-item {
+  &__item {
     margin: 0 0 0 10px;
   }
 }

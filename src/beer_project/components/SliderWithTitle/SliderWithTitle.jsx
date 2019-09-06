@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Slider } from '@material-ui/core';
 
 import './SliderWithTitle.scss';
 
-function SliderWithTitle({ title, value, className }) {
+function SliderWithTitle({
+  title, min, max, className,
+}) {
+  const [value, setValue] = useState(min);
+
+  const onSliderChange = (e, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className={classNames('slider-with-title', className)}>
-      <p className="slider-with-title__title">Alcohol</p>
-      <p className="slider-with-title__value">42</p>
+      <p className="slider-with-title__title">{title}</p>
+      <p className="slider-with-title__value">{value}</p>
       <div className="slider-with-title__slider">
-        <Slider min={0} max={100} />
+        <Slider min={min} max={max} value={value} onChange={onSliderChange} />
       </div>
     </div>
   );
