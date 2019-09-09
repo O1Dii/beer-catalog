@@ -1,11 +1,25 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
+import { chooseFunction } from '../../utils';
 
 import './VerticalBeerTemplate.scss';
 
 function VerticalBeerTemplate({
-  className, title, tagline, image,
+  className,
+  title,
+  tagline,
+  image,
+  onFavoriteClicked,
+  onRemoveFavoriteClicked,
+  favorite,
+  id,
 }) {
+  const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
+
+  const onFavoriteButtonClicked = () => chooseFunction(favorite, onFavoriteClicked, onRemoveFavoriteClicked)(id);
+
   return (
     <div className={classNames('vertical-beer-template', className)}>
       <img src={image} className="vertical-beer-template__image" alt="beer" />
@@ -13,11 +27,15 @@ function VerticalBeerTemplate({
         <p className="vertical-beer-template__name">{title}</p>
         <p className="vertical-beer-template__description">{tagline}</p>
         <div className="vertical-beer-template__buttons-container">
-          <button className="vertical-beer-template__open-button" type="button">
+          <Link className="vertical-beer-template__open-button" to={`/detail/${id}/`}>
             Open
-          </button>
-          <button className="vertical-beer-template__favorite-button" type="button">
-            Favorite
+          </Link>
+          <button
+            className="vertical-beer-template__favorite-button"
+            type="button"
+            onClick={onFavoriteButtonClicked}
+          >
+            {FavoriteButtonTitle}
           </button>
         </div>
       </div>

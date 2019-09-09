@@ -1,0 +1,48 @@
+@import "../../variables.scss";
+
+.beer-short-description {
+  display: flex;
+
+  &__image {
+    height: 150px;
+    margin: 0 50px auto 50px;
+  }
+
+  &__left-container {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  &__name {
+    margin: 0 20px 0 0;
+
+    font-size: 40px;
+  }
+
+  &__description {
+    margin: 0 20px 10px 0;
+
+    color: $main-color;
+
+    font-size: 18px;
+  }
+
+  &__text {
+    margin: 0 20px 10px 0;
+  }
+
+  &__favorite-button {
+    margin: 0 auto 10px 0;
+    padding: 12px;
+
+    text-transform: uppercase;
+
+    color: $main-text-color;
+    background-color: $primary-color;
+  }
+}

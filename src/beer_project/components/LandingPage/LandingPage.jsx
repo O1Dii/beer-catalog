@@ -6,7 +6,13 @@ import BeerGrid from '../BeerGrid/BeerGrid';
 import './LandingPage.scss';
 
 function LandingPage({
-  onMount, beers, searchText, onSearchChange,
+  onMount,
+  beers,
+  searchText,
+  onSearchChange,
+  onFavoriteClicked,
+  onRemoveFavoriteClicked,
+  isIdFavorite,
 }) {
   useEffect(() => {
     onMount();
@@ -19,7 +25,13 @@ function LandingPage({
         onSubmit={onSearchChange}
         searchText={searchText}
       />
-      <BeerGrid className="landing-page__beer-grid" beers={beers} />
+      <BeerGrid
+        className="landing-page__beer-grid"
+        beers={beers}
+        isIdFavorite={isIdFavorite}
+        onFavoriteClicked={onFavoriteClicked}
+        onRemoveFavoriteClicked={onRemoveFavoriteClicked}
+      />
     </div>
   );
 }

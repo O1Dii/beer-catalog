@@ -41,7 +41,10 @@
   &__open-button {
     margin-right: 15px;
 
+    text-decoration: none;
     text-transform: uppercase;
+
+    color: $main-text-color;
 
     font-size: 15px;
   }

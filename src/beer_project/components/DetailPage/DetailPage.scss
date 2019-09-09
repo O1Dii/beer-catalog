@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.detail-page {
+  padding: 50px 200px;
+
+  color: $secondary-text-color;
+
+  &__properties {
+    width: 350px;
+    margin-right: 150px;
+  }
+
+  &__food-pairing {
+    width: 500px;
+  }
+
+  &__ingredients {
+    width: 400px;
+    margin-right: 70px;
+  }
+
+  &__method {
+    width: 400px;
+  }
+
+  &__top-details,
+  &__bottom-details {
+    display: flex;
+
+    margin: 30px 0;
+  }
+}

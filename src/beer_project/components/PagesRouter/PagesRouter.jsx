@@ -7,11 +7,20 @@ import Navbar from '../Navbar/Navbar';
 import SideMenu from '../SideMenu/SideMenu';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import LandingPage from '../LandingPage/LandingPage';
+import DetailPage from '../DetailPage/DetailPage';
 
 import './PagesRouter.scss';
 
 function PagesRouter({
-  onLandingPageMount, beers, searchText, onSearchChange,
+  onLandingPageMount,
+  beers,
+  searchText,
+  onSearchChange,
+  onFavoriteClicked,
+  onRemoveFavoriteClicked,
+  isIdFavorite,
+  getFavoriteBeers,
+  getBeerById,
 }) {
   const [open, setOpen] = useState(false);
 
@@ -57,10 +66,34 @@ function PagesRouter({
               beers={beers}
               searchText={searchText}
               onSearchChange={onSearchChange}
+              onFavoriteClicked={onFavoriteClicked}
+              onRemoveFavoriteClicked={onRemoveFavoriteClicked}
+              isIdFavorite={isIdFavorite}
             />
           )}
         />
-        <Route path="/favorites/" render={props => <FavoritesPage {...props} />} />
+        <Route
+          path="/favorites/"
+          render={props => (
+            <FavoritesPage
+              {...props}
+              beers={getFavoriteBeers()}
+              onRemoveFavoriteClicked={onRemoveFavoriteClicked}
+            />
+          )}
+        />
+        <Route
+          path="/detail/:id"
+          render={props => (
+            <DetailPage
+              {...props}
+              getBeerById={getBeerById}
+              onFavoriteClicked={onFavoriteClicked}
+              onRemoveFavoriteClicked={onRemoveFavoriteClicked}
+              isIdFavorite={isIdFavorite}
+            />
+          )}
+        />
       </div>
     </Router>
   );

@@ -2,7 +2,12 @@ import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
 
 import {
-  errorBeers, receiveBeers, requestBeers, searchChange,
+  errorBeers,
+  receiveBeers,
+  requestBeers,
+  searchChange,
+  addFavorite,
+  removeFavorite,
 } from '../actions';
 
 const main = handleActions(
@@ -11,17 +16,21 @@ const main = handleActions(
       console.log('error');
       return state;
     },
-    [receiveBeers]: (state, { payload }) => state.set('beers', Immutable.fromJS(payload)),
-    [requestBeers]: (state, { payload }) => {
-      console.log('request');
-      return state;
-    },
+    [receiveBeers]: (state, { payload }) => state.set(
+      'beers',
+      Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
+    ),
+    [requestBeers]: (state, { payload }) => state,
+
+    [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
+    [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
 
     [searchChange]: (state, { payload }) => state.set('searchText', payload),
   },
   Immutable.Map({
-    beers: Immutable.List(),
+    beers: Immutable.Map(),
     searchText: '',
+    favoritesIds: Immutable.List(),
     abv: 2,
     ibu: 0,
     ebc: 4,
