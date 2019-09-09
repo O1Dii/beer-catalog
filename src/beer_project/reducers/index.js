@@ -13,13 +13,12 @@ import {
 const main = handleActions(
   {
     [errorBeers]: (state, { payload }) => {
-      console.log('error');
+      console.error('error loading beers');
       return state;
     },
-    [receiveBeers]: (state, { payload }) => state.set(
-      'beers',
+    [receiveBeers]: (state, { payload }) => state.update('beers', oldData => oldData.concat(
       Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
-    ),
+    )),
     [requestBeers]: (state, { payload }) => state,
 
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
@@ -28,7 +27,7 @@ const main = handleActions(
     [searchChange]: (state, { payload }) => state.set('searchText', payload),
   },
   Immutable.Map({
-    beers: Immutable.Map(),
+    beers: Immutable.OrderedMap(),
     searchText: '',
     favoritesIds: Immutable.List(),
     abv: 2,

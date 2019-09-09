@@ -3,10 +3,10 @@ import { createAction } from 'redux-actions';
 export const errorBeers = createAction('ERROR_BEERS');
 export const requestBeers = createAction('REQUEST_BEERS');
 export const receiveBeers = createAction('RECEIVE_BEERS');
-export const getBeersData = () => (dispatch) => {
+export const getBeersData = (page = 1) => (dispatch) => {
   dispatch(requestBeers());
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://api.punkapi.com/v2/beers?page=1&per_page=9');
+  xhr.open('GET', `https://api.punkapi.com/v2/beers?page=${page}&per_page=9`);
 
   xhr.send();
 
