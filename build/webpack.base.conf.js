@@ -15,7 +15,7 @@ module.exports = {
     paths: PATHS,
   },
   entry: {
-    app: PATHS.src,
+    app: path.join(PATHS.src, 'index.js'),
   },
   output: {
     filename: `${PATHS.assets}js/[name].[hash].js`,
@@ -37,15 +37,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.j(s|sx)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: '/node_modules/',
         query: {
           presets: ['@babel/env', '@babel/react'],
-          plugins: [
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            ['@babel/plugin-proposal-class-properties', { loose: true }],
-          ],
         },
       },
       {

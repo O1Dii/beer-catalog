@@ -29,4 +29,11 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
+  &__prev_disabled,
+  &__next_disabled {
+    pointer-events: none;
+
+    background-color: $main-color;
+  }
 }

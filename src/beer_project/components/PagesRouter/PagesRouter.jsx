@@ -22,6 +22,7 @@ function PagesRouter({
   getFavoriteBeers,
   getBeerById,
 }) {
+  const beersPerFavoritePage = 1;
   const [open, setOpen] = useState(false);
 
   const onMenuOpen = () => {
@@ -48,7 +49,7 @@ function PagesRouter({
               <i className="side-menu__icon fas fa-inbox" />
               <p className="side-menu__item">Home</p>
             </Link>
-            <Link to="/favorites/" className="side-menu__item-container">
+            <Link to="/favorites/1/" className="side-menu__item-container">
               <i className="side-menu__icon fas fa-star" />
               <p className="side-menu__item">Favorites</p>
             </Link>
@@ -73,17 +74,18 @@ function PagesRouter({
           )}
         />
         <Route
-          path="/favorites/"
+          path="/favorites/:page/"
           render={props => (
             <FavoritesPage
               {...props}
               beers={getFavoriteBeers()}
+              beersPerPage={beersPerFavoritePage}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
             />
           )}
         />
         <Route
-          path="/detail/:id"
+          path="/detail/:id/"
           render={props => (
             <DetailPage
               {...props}

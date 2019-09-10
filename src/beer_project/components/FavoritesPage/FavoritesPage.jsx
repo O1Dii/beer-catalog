@@ -5,11 +5,17 @@ import PagesList from '../PagesList/PagesList';
 
 import './FavoritesPage.scss';
 
-function FavoritesPage({ beers, onRemoveFavoriteClicked }) {
+function FavoritesPage({
+  beers, onRemoveFavoriteClicked, beersPerPage, match,
+}) {
+  const pagesCount = Math.ceil(beers.count() / beersPerPage);
+  const currentPage = match.params.page;
+
   return (
     <div className="favorites-page">
       <h3 className="favorites-page__title">Your favorite beers</h3>
       {beers
+        .slice((currentPage - 1) * beersPerPage, currentPage * beersPerPage)
         .map(item => (
           <HorizontalBeerTemplate
             className="favorites-page__item"
@@ -23,7 +29,11 @@ function FavoritesPage({ beers, onRemoveFavoriteClicked }) {
           />
         ))
         .toList()}
-      <PagesList className="favorites-page__pages-list" />
+      <PagesList
+        className="favorites-page__pages-list"
+        pagesCount={pagesCount}
+        currentPage={currentPage}
+      />
     </div>
   );
 }

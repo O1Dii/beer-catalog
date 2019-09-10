@@ -23,12 +23,19 @@
   }
 
   &__name {
+    overflow: hidden;
+
     margin: 10px 20px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     font-size: 30px;
   }
 
   &__description {
+    overflow: hidden;
+
     margin: 0 20px;
 
     font-size: 20px;
