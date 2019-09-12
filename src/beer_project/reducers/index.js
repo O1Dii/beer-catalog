@@ -8,23 +8,39 @@ import {
   searchChange,
   addFavorite,
   removeFavorite,
+  receiveSearchedBeers,
+  clearBears,
 } from '../actions';
 
 const main = handleActions(
   {
-    [errorBeers]: (state, { payload }) => {
+    [requestBeers]: state => state,
+    [receiveBeers]: (state, { payload }) => {
+      console.log(payload);
+      return state.update('beers', oldData => oldData.concat(
+        Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
+      ));
+    },
+    [errorBeers]: (state) => {
       console.error('error loading beers');
       return state;
     },
-    [receiveBeers]: (state, { payload }) => state.update('beers', oldData => oldData.concat(
-      Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
-    )),
-    [requestBeers]: (state, { payload }) => state,
 
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
 
-    [searchChange]: (state, { payload }) => state.set('searchText', payload),
+    [searchChange]: (state, { payload }) => state
+      .set('searchText', payload.searchText)
+      .set('abv', payload.abv)
+      .set('ibu', payload.ibu)
+      .set('ebc', payload.ebc),
+
+    [receiveSearchedBeers]: (state, { payload }) => state.set(
+      'beers',
+      Immutable.OrderedMap(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
+    ),
+
+    [clearBears]: state => state.update('beers', oldBeers => oldBeers.clear()),
   },
   Immutable.Map({
     beers: Immutable.OrderedMap(),

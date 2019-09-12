@@ -21,8 +21,11 @@ function PagesRouter({
   isIdFavorite,
   getFavoriteBeers,
   getBeerById,
+  abv,
+  ibu,
+  ebc,
 }) {
-  const beersPerFavoritePage = 1;
+  const beersPerFavoritePage = 3;
   const [open, setOpen] = useState(false);
 
   const onMenuOpen = () => {
@@ -64,12 +67,15 @@ function PagesRouter({
             <LandingPage
               {...props}
               onMount={onLandingPageMount}
-              beers={beers}
-              searchText={searchText}
               onSearchChange={onSearchChange}
+              beers={beers}
               onFavoriteClicked={onFavoriteClicked}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
               isIdFavorite={isIdFavorite}
+              searchText={searchText}
+              abv={abv}
+              ibu={ibu}
+              ebc={ebc}
             />
           )}
         />

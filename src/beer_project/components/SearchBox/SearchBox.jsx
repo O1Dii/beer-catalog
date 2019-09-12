@@ -5,16 +5,22 @@ import Filters from '../Filters/Filters';
 
 import './SearchBox.scss';
 
-function SearchBox({ className, onSubmit, searchText }) {
-  const [value, setValue] = useState(searchText);
+function SearchBox({
+  className, onSubmit, searchText, abv, ibu, ebc,
+}) {
+  const [searchValue, setSearchValue] = useState(searchText);
+  const [newAbv, setAbv] = useState(abv);
+  const [newIbu, setIbu] = useState(ibu);
+  const [newEbc, setEbc] = useState(ebc);
 
   const onInputChange = (e) => {
-    setValue(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    onSubmit(value);
+    console.log(searchValue, newAbv, newIbu, newEbc);
+    onSubmit(searchValue, newAbv, newIbu, newEbc);
   };
 
   return (
@@ -24,13 +30,23 @@ function SearchBox({ className, onSubmit, searchText }) {
           placeholder="Search beers..."
           type="text"
           className="search-box__input"
-          value={value}
+          value={searchValue}
           onChange={onInputChange}
         />
         <button type="submit" className="fas fa-search search-box__icon" />
       </label>
 
-      {searchText && <Filters className="search-box__filters" />}
+      {searchText && (
+        <Filters
+          className="search-box__filters"
+          abv={newAbv}
+          ibu={newIbu}
+          ebc={newEbc}
+          setAbv={setAbv}
+          setIbu={setIbu}
+          setEbc={setEbc}
+        />
+      )}
     </form>
   );
 }

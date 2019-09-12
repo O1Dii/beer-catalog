@@ -23,3 +23,23 @@ export const getPagesArray = (pagesCount, currentPage, pagesVisible) => {
   const addition = calculatePagesAmount(pagesCount, currentPage, pagesVisible);
   return [...Array(pagesVisible).keys()].map(item => item + addition);
 };
+
+export const sendRequest = (url, request, receive, error) => {
+  request();
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+
+  xhr.send();
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState !== 4) {
+      return;
+    }
+
+    if (xhr.status !== 200) {
+      error();
+    }
+
+    receive(xhr.responseText);
+  };
+};

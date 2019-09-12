@@ -14,17 +14,28 @@ function LandingPage({
   onFavoriteClicked,
   onRemoveFavoriteClicked,
   isIdFavorite,
+  abv,
+  ibu,
+  ebc,
 }) {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
+  const [currentBeersCount, setCurrentBeersCount] = useState(0);
 
-  useEffect(() => {
-    onMount();
-  }, [searchText]);
+  const hasMoreItems = !searchText && currentBeersCount !== beers.count();
 
   const onScroll = () => {
+    setCurrentBeersCount(beers.count());
+
     onMount(page);
     setPage(page + 1);
   };
+
+  useEffect(() => {
+    setCurrentBeersCount(0);
+
+    onMount();
+    setPage(2);
+  }, [searchText, abv, ibu, ebc]);
 
   return (
     <div className="landing-page">
@@ -32,12 +43,15 @@ function LandingPage({
         className="landing-page__search-box"
         onSubmit={onSearchChange}
         searchText={searchText}
+        abv={abv}
+        ibu={ibu}
+        ebc={ebc}
       />
       <InfiniteScroll
         className="landing-page__items-container"
-        dataLength={beers.count()}
+        dataLength={currentBeersCount}
         next={onScroll}
-        hasMore
+        hasMore={hasMoreItems}
       >
         {beers
           .map(item => (
