@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './Brewing.scss';
@@ -11,5 +12,15 @@ function Brewing({ className, brewing }) {
     </div>
   );
 }
+
+Brewing.propTypes = {
+  className: PropTypes.string,
+
+  brewing: PropTypes.string.isRequired,
+};
+
+Brewing.defaultProps = {
+  className: '',
+};
 
 export default Brewing;

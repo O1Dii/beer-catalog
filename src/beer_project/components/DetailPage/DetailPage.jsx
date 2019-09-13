@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import BeerShortDescription from '../BeerShortDescription/BeerShortDescription';
 import Properties from '../Properties/Properties';
@@ -48,5 +49,14 @@ function DetailPage({
     </div>
   );
 }
+
+DetailPage.propTypes = {
+  getBeerById: PropTypes.func.isRequired,
+  onFavoriteClicked: PropTypes.func.isRequired,
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+  isIdFavorite: PropTypes.func.isRequired,
+
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default DetailPage;

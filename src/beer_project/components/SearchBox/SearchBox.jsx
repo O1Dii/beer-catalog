@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Filters from '../Filters/Filters';
@@ -19,7 +20,6 @@ function SearchBox({
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(searchValue, newAbv, newIbu, newEbc);
     onSubmit(searchValue, newAbv, newIbu, newEbc);
   };
 
@@ -50,5 +50,20 @@ function SearchBox({
     </form>
   );
 }
+
+SearchBox.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  searchText: PropTypes.string.isRequired,
+  abv: PropTypes.number.isRequired,
+  ibu: PropTypes.number.isRequired,
+  ebc: PropTypes.number.isRequired,
+};
+
+SearchBox.defaultProps = {
+  className: '',
+};
 
 export default SearchBox;

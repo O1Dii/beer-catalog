@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import SliderWithTitle from '../SliderWithTitle/SliderWithTitle';
@@ -50,5 +51,21 @@ function Filters({
     </div>
   );
 }
+
+Filters.propTypes = {
+  setAbv: PropTypes.func.isRequired,
+  setIbu: PropTypes.func.isRequired,
+  setEbc: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  abv: PropTypes.number.isRequired,
+  ibu: PropTypes.number.isRequired,
+  ebc: PropTypes.number.isRequired,
+};
+
+Filters.defaultProps = {
+  className: '',
+};
 
 export default Filters;

@@ -15,16 +15,10 @@ import {
 const main = handleActions(
   {
     [requestBeers]: state => state,
-    [receiveBeers]: (state, { payload }) => {
-      console.log(payload);
-      return state.update('beers', oldData => oldData.concat(
-        Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
-      ));
-    },
-    [errorBeers]: (state) => {
-      console.error('error loading beers');
-      return state;
-    },
+    [receiveBeers]: (state, { payload }) => state.update('beers', oldData => oldData.concat(
+      Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
+    )),
+    [errorBeers]: state => state,
 
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),

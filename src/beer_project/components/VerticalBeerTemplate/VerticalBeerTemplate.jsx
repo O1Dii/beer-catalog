@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -42,5 +43,22 @@ function VerticalBeerTemplate({
     </div>
   );
 }
+
+VerticalBeerTemplate.propTypes = {
+  onFavoriteClicked: PropTypes.func.isRequired,
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
+VerticalBeerTemplate.defaultProps = {
+  className: '',
+};
 
 export default VerticalBeerTemplate;

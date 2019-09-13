@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { chooseFunction } from '../../utils';
@@ -16,7 +17,6 @@ function BeerShortDescription({
   onFavoriteClicked,
   onRemoveFavoriteClicked,
 }) {
-  console.log(favorite);
   const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
 
   const onFavoriteButtonClicked = () => chooseFunction(favorite, onFavoriteClicked, onRemoveFavoriteClicked)(id);
@@ -39,5 +39,23 @@ function BeerShortDescription({
     </div>
   );
 }
+
+BeerShortDescription.propTypes = {
+  onFavoriteClicked: PropTypes.func.isRequired,
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
+};
+
+BeerShortDescription.defaultProps = {
+  className: '',
+};
 
 export default BeerShortDescription;

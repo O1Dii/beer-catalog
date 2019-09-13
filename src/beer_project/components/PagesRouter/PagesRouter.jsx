@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import useOnClickOutside from 'use-onclickoutside';
 import classNames from 'classnames';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Map } from 'immutable';
 import Navbar from '../Navbar/Navbar';
 
 import SideMenu from '../SideMenu/SideMenu';
@@ -106,5 +108,22 @@ function PagesRouter({
     </Router>
   );
 }
+
+PagesRouter.propTypes = {
+  onLandingPageMount: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+  onFavoriteClicked: PropTypes.func.isRequired,
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+  isIdFavorite: PropTypes.func.isRequired,
+  getFavoriteBeers: PropTypes.func.isRequired,
+  getBeerById: PropTypes.func.isRequired,
+
+  beers: PropTypes.instanceOf(Map).isRequired,
+
+  searchText: PropTypes.string.isRequired,
+  abv: PropTypes.number.isRequired,
+  ibu: PropTypes.number.isRequired,
+  ebc: PropTypes.number.isRequired,
+};
 
 export default PagesRouter;

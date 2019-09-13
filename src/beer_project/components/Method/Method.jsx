@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Map } from 'immutable';
 
 import './Method.scss';
 
@@ -11,7 +13,7 @@ function Method({ className, method }) {
         <li className="method__list-item method__list-item_border-top">
           <p className="method__item-name">Mash</p>
           {method.get('mash_temp').map(item => (
-            <p className="method__item-description">
+            <p key={item.get('temp')} className="method__item-description">
               {item.get('duration') && `${item.get('duration')} minutes at `}
               {item.getIn(['temp', 'value'])}
               {' '}
@@ -39,5 +41,14 @@ function Method({ className, method }) {
     </div>
   );
 }
+
+Method.propTypes = {
+  className: PropTypes.string,
+  method: PropTypes.instanceOf(Map).isRequired,
+};
+
+Method.defaultProps = {
+  className: '',
+};
 
 export default Method;

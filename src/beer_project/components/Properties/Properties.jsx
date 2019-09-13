@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './Properties.scss';
@@ -29,5 +30,17 @@ function Properties({
     </div>
   );
 }
+
+Properties.propTypes = {
+  className: PropTypes.string,
+
+  abv: PropTypes.number.isRequired,
+  ibu: PropTypes.number.isRequired,
+  ebc: PropTypes.number.isRequired,
+};
+
+Properties.defaultProps = {
+  className: '',
+};
 
 export default Properties;

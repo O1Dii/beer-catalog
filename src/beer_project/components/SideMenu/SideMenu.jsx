@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './SideMenu.scss';
@@ -13,5 +14,15 @@ function SideMenu({ className, children }) {
     </div>
   );
 }
+
+SideMenu.propTypes = {
+  className: PropTypes.string,
+
+  children: PropTypes.node.isRequired,
+};
+
+SideMenu.defaultProps = {
+  className: '',
+};
 
 export default SideMenu;

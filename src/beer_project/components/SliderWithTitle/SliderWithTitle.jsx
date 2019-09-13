@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Slider } from '@material-ui/core';
 
@@ -17,5 +18,20 @@ function SliderWithTitle({
     </div>
   );
 }
+
+SliderWithTitle.propTypes = {
+  onChange: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  title: PropTypes.string.isRequired,
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+SliderWithTitle.defaultProps = {
+  className: '',
+};
 
 export default SliderWithTitle;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +25,7 @@ function PagesList({ className, pagesCount, currentPage }) {
       </li>
 
       {pages.map(item => (
-        <li className="pages-list__item">
+        <li key={item} className="pages-list__item">
           <Link to={`/favorites/${item}/`}>
             <button type="button">{item}</button>
           </Link>
@@ -43,5 +44,15 @@ function PagesList({ className, pagesCount, currentPage }) {
     </ul>
   );
 }
+
+PagesList.propTypes = {
+  className: PropTypes.string,
+  pagesCount: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+};
+
+PagesList.defaultProps = {
+  className: '',
+};
 
 export default PagesList;

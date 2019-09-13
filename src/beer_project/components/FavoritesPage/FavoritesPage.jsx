@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
 import HorizontalBeerTemplate from '../HorizontalBeerTemplate/HorizontalBeerTemplate';
 import PagesList from '../PagesList/PagesList';
@@ -31,11 +33,20 @@ function FavoritesPage({
         .toList()}
       <PagesList
         className="favorites-page__pages-list"
-        pagesCount={pagesCount}
-        currentPage={currentPage}
+        pagesCount={+pagesCount}
+        currentPage={+currentPage}
       />
     </div>
   );
 }
+
+FavoritesPage.propTypes = {
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+
+  beers: PropTypes.instanceOf(Map).isRequired,
+
+  beersPerPage: PropTypes.number.isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default FavoritesPage;

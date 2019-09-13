@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -42,5 +43,21 @@ function HorizontalBeerTemplate({
     </div>
   );
 }
+
+HorizontalBeerTemplate.propTypes = {
+  onRemoveFavoriteClicked: PropTypes.func.isRequired,
+
+  className: PropTypes.string,
+
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  tagline: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
+HorizontalBeerTemplate.defaultProps = {
+  className: '',
+};
 
 export default HorizontalBeerTemplate;
