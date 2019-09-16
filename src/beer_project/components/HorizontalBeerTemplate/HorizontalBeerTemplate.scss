@@ -11,17 +11,12 @@
 
   &__image {
     height: 150px;
-    margin: 0 50px auto 10px;
+    margin: 0 50px auto auto;
   }
 
   &__left-container {
     display: flex;
     flex-direction: column;
-
-    height: 100%;
-
-    flex-grow: 1;
-    justify-content: space-between;
   }
 
   &__name {
@@ -39,7 +34,7 @@
   }
 
   &__text {
-    margin: 0 20px 10px;
+    margin: 0 30px 10px 20px;
   }
 
   &__buttons-container {
@@ -47,7 +42,7 @@
   }
 
   &__open-button {
-    margin-right: 15px;
+    margin-right: 20px;
 
     text-decoration: none;
     text-transform: uppercase;
@@ -58,6 +53,8 @@
   }
 
   &__favorite-button {
+    padding: 0;
+
     text-transform: uppercase;
 
     font-size: 15px;

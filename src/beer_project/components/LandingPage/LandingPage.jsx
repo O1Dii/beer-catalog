@@ -51,6 +51,7 @@ function LandingPage({
         ibu={ibu}
         ebc={ebc}
       />
+      {beers.isEmpty() && <p className="landing-page__nothing-found-title">Nothing found</p>}
       <InfiniteScroll
         className="landing-page__items-container"
         dataLength={currentBeersCount}

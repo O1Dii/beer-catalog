@@ -32,11 +32,15 @@ function FavoritesPage({ beers, onRemoveFavoriteClicked, match }) {
           />
         ))
         .toList()}
-      <PagesList
-        className="favorites-page__pages-list"
-        pagesCount={+pagesCount}
-        currentPage={+currentPage}
-      />
+      {beers.isEmpty() ? (
+        <p className="favorites-page__no-favorites-title">You don&apos;t have favorite beers yet</p>
+      ) : (
+        <PagesList
+          className="favorites-page__pages-list"
+          pagesCount={+pagesCount}
+          currentPage={+currentPage}
+        />
+      )}
     </div>
   );
 }

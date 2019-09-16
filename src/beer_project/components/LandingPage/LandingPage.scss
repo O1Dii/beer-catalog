@@ -11,6 +11,12 @@
     margin: 50px auto 30px;
   }
 
+  &__nothing-found-title {
+    color: $secondary-text-color;
+
+    font-size: 25px;
+  }
+
   &__items-container {
     display: flex;
 
