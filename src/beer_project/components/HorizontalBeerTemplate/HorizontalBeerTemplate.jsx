@@ -14,7 +14,7 @@ function HorizontalBeerTemplate({
   onRemoveFavoriteClicked,
   id,
 }) {
-  const onFavoriteButtonClicked = () => {
+  const onRemoveFavoriteButtonClicked = () => {
     onRemoveFavoriteClicked(id);
   };
 
@@ -28,14 +28,16 @@ function HorizontalBeerTemplate({
         </div>
         <img src={image} className="horizontal-beer-template__image" alt="beer" />
       </div>
+
       <div className="horizontal-beer-template__buttons-container">
         <Link className="horizontal-beer-template__open-button" to={`/detail/${id}/`}>
           Open
         </Link>
+
         <button
           className="horizontal-beer-template__favorite-button"
           type="button"
-          onClick={onFavoriteButtonClicked}
+          onClick={onRemoveFavoriteButtonClicked}
         >
           Remove Favorite
         </button>

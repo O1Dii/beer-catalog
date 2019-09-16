@@ -5,39 +5,48 @@ import { List, Map } from 'immutable';
 
 import './Ingredients.scss';
 
+const getIngredientItems = (ingredient) => {
+  if (ingredient instanceof List) {
+    let ingredientItemId = 0;
+
+    return ingredient
+      .map((ingredientItem) => {
+        ingredientItemId += 1;
+
+        return (
+          <p key={ingredientItemId} className="ingredients__item-description">
+            {`"${ingredientItem.get('name')}" - `}
+            {`${ingredientItem.getIn(['amount', 'value'])} `}
+            {ingredientItem.getIn(['amount', 'unit'])}
+            {ingredientItem.get('add') && `, add at the ${ingredientItem.get('add')}`}
+          </p>
+        );
+      })
+      .toList();
+  }
+
+  return <p className="ingredients__item-description">{ingredient}</p>;
+};
+
 function Ingredients({ className, ingredients }) {
-  let id = 0;
+  let ingredientId = 0;
 
   return (
     <div className={classNames('ingredients', className)}>
       <p className="ingredients__title">Ingredients</p>
       <ul className="ingredients__list">
         {ingredients
-          .map((ingredient, itemName) => (
-            <li key={itemName} className="ingredients__list-item">
-              <p className="ingredients__item-name">{itemName}</p>
-              {ingredient instanceof List ? (
-                ingredient
-                  .map((item) => {
-                    id += 1;
+          .map((ingredient, ingredientName) => {
+            ingredientId += 1;
 
-                    return (
-                      <p key={id} className="ingredients__item-description">
-                        {`"${item.get('name')}"`}
-                        {' - '}
-                        {item.getIn(['amount', 'value'])}
-                        {' '}
-                        {item.getIn(['amount', 'unit'])}
-                        {item.get('add') && `, add at the ${item.get('add')}`}
-                      </p>
-                    );
-                  })
-                  .toList()
-              ) : (
-                <p className="ingredients__item-description">{ingredient}</p>
-              )}
-            </li>
-          ))
+            return (
+              <li key={ingredientId} className="ingredients__list-item">
+                <p className="ingredients__item-name">{ingredientName}</p>
+
+                {getIngredientItems(ingredient)}
+              </li>
+            );
+          })
           .toList()}
       </ul>
     </div>

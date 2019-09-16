@@ -24,6 +24,7 @@ function Filters({
   return (
     <div className={classNames('filters', className)}>
       <p className="filters__header">Filter results</p>
+
       <SliderWithTitle
         className="filters__slider-with-title"
         title="Alcohol by volume"

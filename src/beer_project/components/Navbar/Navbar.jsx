@@ -11,6 +11,7 @@ function Navbar({ className, onMenuButtonClick }) {
         <i className="navbar__menu-icon fas fa-bars" />
       </button>
       <p className="navbar__title">Beer catalog</p>
+
       <i className="navbar__options-icon fas fa-ellipsis-v" />
     </div>
   );

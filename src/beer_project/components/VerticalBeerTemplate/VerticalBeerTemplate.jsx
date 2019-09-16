@@ -19,7 +19,13 @@ function VerticalBeerTemplate({
 }) {
   const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
 
-  const onFavoriteButtonClicked = () => chooseFunction(favorite, onFavoriteClicked, onRemoveFavoriteClicked)(id);
+  const favoriteButtonClickHandler = chooseFunction(
+    favorite,
+    onFavoriteClicked,
+    onRemoveFavoriteClicked,
+  );
+
+  const onFavoriteButtonClicked = () => favoriteButtonClickHandler(id);
 
   return (
     <div className={classNames('vertical-beer-template', className)}>

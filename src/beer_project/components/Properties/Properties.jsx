@@ -7,6 +7,10 @@ import './Properties.scss';
 function Properties({
   className, abv, ibu, ebc,
 }) {
+  const visibleAbv = abv ? abv.toFixed(1) : 'no abv';
+  const visibleIbu = ibu ? ibu.toFixed(1) : 'no ibu';
+  const visibleEbc = ebc ? ebc.toFixed(1) : 'no ebc';
+
   return (
     <div className={classNames('properties', className)}>
       <p className="properties__title">Properties</p>
@@ -14,17 +18,17 @@ function Properties({
         <li className="properties__list-item">
           <p className="properties__item-name">ABV</p>
           <i className="properties__item-icon fas fa-info-circle" />
-          <div className="properties__number">{abv ? abv.toFixed(1) : 'no abv'}</div>
+          <div className="properties__number">{visibleAbv}</div>
         </li>
         <li className="properties__list-item">
           <p className="properties__item-name">IBU</p>
           <i className="properties__item-icon fas fa-info-circle" />
-          <div className="properties__number">{ibu ? ibu.toFixed(1) : 'no ibu'}</div>
+          <div className="properties__number">{visibleIbu}</div>
         </li>
         <li className="properties__list-item">
           <p className="properties__item-name">EBC</p>
           <i className="properties__item-icon fas fa-info-circle" />
-          <div className="properties__number">{ebc ? ebc.toFixed(1) : 'no ebc'}</div>
+          <div className="properties__number">{visibleEbc}</div>
         </li>
       </ul>
     </div>

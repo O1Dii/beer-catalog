@@ -7,3 +7,4 @@ export const MIN_EBC = 4;
 export const MAX_EBC = 80;
 export const ITEMS_PER_LANDING_PAGE = 9;
 export const ITEMS_PER_FAVORITE_PAGE = 3;
+export const VISIBLE_PAGES = 5;

@@ -15,8 +15,7 @@ function Method({ className, method }) {
           {method.get('mash_temp').map(item => (
             <p key={item.get('temp')} className="method__item-description">
               {item.get('duration') && `${item.get('duration')} minutes at `}
-              {item.getIn(['temp', 'value'])}
-              {' '}
+              {`${item.getIn(['temp', 'value'])} `}
               {item.getIn(['temp', 'unit'])}
             </p>
           ))}
@@ -25,9 +24,7 @@ function Method({ className, method }) {
           <p className="method__item-name">Fermentation</p>
           <p className="method__item-description">
             Perform at
-            {' '}
-            {method.getIn(['fermentation', 'temp', 'value'])}
-            {' '}
+            {` ${method.getIn(['fermentation', 'temp', 'value'])} `}
             {method.getIn(['fermentation', 'temp', 'unit'])}
           </p>
         </li>

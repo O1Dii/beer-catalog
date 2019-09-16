@@ -9,6 +9,7 @@ function FoodPairing({ className, foodPairing }) {
   return (
     <div className={classNames('food-pairing', className)}>
       <p className="food-pairing__title">Food Pairing</p>
+
       <ul className="food-pairing__list">
         {foodPairing.map(item => (
           <li key={item} className="food-pairing__list-item">

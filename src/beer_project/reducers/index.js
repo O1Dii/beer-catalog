@@ -2,23 +2,20 @@ import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
 
 import {
-  errorBeers,
   receiveBeers,
-  requestBeers,
   searchChange,
   addFavorite,
   removeFavorite,
   receiveSearchedBeers,
   clearBears,
 } from '../actions';
+import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
 const main = handleActions(
   {
-    [requestBeers]: state => state,
     [receiveBeers]: (state, { payload }) => state.update('beers', oldData => oldData.concat(
       Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
     )),
-    [errorBeers]: state => state,
 
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
@@ -40,9 +37,9 @@ const main = handleActions(
     beers: Immutable.OrderedMap(),
     searchText: '',
     favoritesIds: Immutable.List(),
-    abv: 2,
-    ibu: 0,
-    ebc: 4,
+    abv: MIN_ABV,
+    ibu: MIN_IBU,
+    ebc: MIN_EBC,
   }),
 );
 

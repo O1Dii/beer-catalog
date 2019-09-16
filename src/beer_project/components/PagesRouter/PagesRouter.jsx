@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useOnClickOutside from 'use-onclickoutside';
 import classNames from 'classnames';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Map } from 'immutable';
 import Navbar from '../Navbar/Navbar';
 
@@ -48,16 +48,7 @@ function PagesRouter({
             className={classNames('pages-router__side-menu', {
               'pages-router__side-menu_open': open,
             })}
-          >
-            <Link to="/" className="side-menu__item-container">
-              <i className="side-menu__icon fas fa-inbox" />
-              <p className="side-menu__item">Home</p>
-            </Link>
-            <Link to="/favorites/1/" className="side-menu__item-container">
-              <i className="side-menu__icon fas fa-star" />
-              <p className="side-menu__item">Favorites</p>
-            </Link>
-          </SideMenu>
+          />
         </div>
         <Navbar className="pages-router__navbar" onMenuButtonClick={onMenuOpen} />
 

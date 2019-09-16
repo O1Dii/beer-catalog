@@ -4,11 +4,12 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { getPagesArray } from '../../utils';
+import { VISIBLE_PAGES } from '../../constants';
 
 import './PagesList.scss';
 
 function PagesList({ className, pagesCount, currentPage }) {
-  const pagesVisible = pagesCount > 5 ? 5 : pagesCount;
+  const pagesVisible = pagesCount > VISIBLE_PAGES ? VISIBLE_PAGES : pagesCount;
 
   const pages = getPagesArray(pagesCount, currentPage, pagesVisible);
 

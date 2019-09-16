@@ -5,6 +5,7 @@ import {
 export const chooseFunction = (value, resolve, reject) => (...args) => {
   if (value) {
     reject(...args);
+
     return;
   }
 
@@ -25,14 +26,16 @@ export const calculatePagesAmount = (pagesCount, currentPage, pagesVisible) => {
 
 export const getPagesArray = (pagesCount, currentPage, pagesVisible) => {
   const addition = calculatePagesAmount(pagesCount, currentPage, pagesVisible);
+
   return [...Array(pagesVisible).keys()].map(item => item + addition);
 };
 
 export const sendRequest = (url, request, receive, error) => {
   request();
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
 
+  const xhr = new XMLHttpRequest();
+
+  xhr.open('GET', url);
   xhr.send();
 
   xhr.onreadystatechange = () => {
