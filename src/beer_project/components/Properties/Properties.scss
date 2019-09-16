@@ -39,14 +39,16 @@
   &__number {
     display: flex;
 
-    width: 40px;
     margin-left: auto;
     padding: 5px;
+
+    white-space: nowrap;
 
     color: $main-text-color;
     border-radius: 20px;
     background-color: $template-background-color;
 
+    flex-basis: 40px;
     justify-content: center;
   }
 }

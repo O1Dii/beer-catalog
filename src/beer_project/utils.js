@@ -1,5 +1,5 @@
 import {
-  API_URL, MIN_ABV, MIN_IBU, MIN_EBC,
+  API_URL, MIN_ABV, MIN_IBU, MIN_EBC, ITEMS_PER_LANDING_PAGE,
 } from './constants';
 
 export const chooseFunction = (value, resolve, reject) => (...args) => {
@@ -58,5 +58,7 @@ export const getUrl = (searchText, abv, ibu, ebc, page) => {
     : `beer_name=${searchText}&abv_gt=${searchAbv}&abv_lt=${abv + 1}&ibu_gt=${searchIbu}`
         + `&ibu_lt=${ibu + 1}&ebc_gt=${searchEbc}&ebc_lt=${ebc + 1}`;
 
-  return `${API_URL}?${searchText ? searchString : `page=${page}&per_page=9`}`;
+  return `${API_URL}?${
+    searchText ? searchString : `page=${page}&per_page=${ITEMS_PER_LANDING_PAGE}`
+  }`;
 };

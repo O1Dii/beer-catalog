@@ -6,6 +6,8 @@ import { Map } from 'immutable';
 import SearchBox from '../SearchBox/SearchBox';
 import VerticalBeerTemplate from '../VerticalBeerTemplate/VerticalBeerTemplate';
 
+import { ITEMS_PER_LANDING_PAGE } from '../../constants';
+
 import './LandingPage.scss';
 
 function LandingPage({
@@ -36,7 +38,7 @@ function LandingPage({
     setCurrentBeersCount(0);
 
     onMount();
-    setPage(2);
+    setPage((Math.ceil(beers.count() / ITEMS_PER_LANDING_PAGE) || 1) + 1);
   }, [searchText, abv, ibu, ebc]);
 
   return (
