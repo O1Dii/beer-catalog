@@ -5,11 +5,12 @@ import { Map } from 'immutable';
 import HorizontalBeerTemplate from '../HorizontalBeerTemplate/HorizontalBeerTemplate';
 import PagesList from '../PagesList/PagesList';
 
+import { ITEMS_PER_FAVORITE_PAGE } from '../../constants';
+
 import './FavoritesPage.scss';
 
-function FavoritesPage({
-  beers, onRemoveFavoriteClicked, beersPerPage, match,
-}) {
+function FavoritesPage({ beers, onRemoveFavoriteClicked, match }) {
+  const beersPerPage = ITEMS_PER_FAVORITE_PAGE;
   const pagesCount = Math.ceil(beers.count() / beersPerPage);
   const currentPage = match.params.page;
 
@@ -45,7 +46,6 @@ FavoritesPage.propTypes = {
 
   beers: PropTypes.instanceOf(Map).isRequired,
 
-  beersPerPage: PropTypes.number.isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -22,6 +22,12 @@ function SearchBox({
     e.preventDefault();
     onSubmit(searchValue, newAbv, newIbu, newEbc);
   };
+
+  useEffect(() => {
+    setAbv(abv);
+    setIbu(ibu);
+    setEbc(ebc);
+  }, [searchText]);
 
   return (
     <form className={classNames('search-box', className)} onSubmit={onFormSubmit}>

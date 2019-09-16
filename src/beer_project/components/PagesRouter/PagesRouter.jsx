@@ -27,7 +27,6 @@ function PagesRouter({
   ibu,
   ebc,
 }) {
-  const beersPerFavoritePage = 3;
   const [open, setOpen] = useState(false);
 
   const onMenuOpen = () => {
@@ -87,7 +86,6 @@ function PagesRouter({
             <FavoritesPage
               {...props}
               beers={getFavoriteBeers()}
-              beersPerPage={beersPerFavoritePage}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
             />
           )}

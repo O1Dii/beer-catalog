@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 
-import { sendRequest } from '../utils';
+import { sendRequest, getUrl } from '../utils';
+import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
 export const errorBeers = createAction('ERROR_BEERS');
 export const requestBeers = createAction('REQUEST_BEERS');
@@ -16,11 +17,7 @@ export const getBeers = (page = 1) => (dispatch, getStore) => {
   const ibu = store.get('ibu');
   const ebc = store.get('ebc');
 
-  const url = `https://api.punkapi.com/v2/beers?${
-    searchText
-      ? `beer_name=${searchText}&abv_gt=${abv}&ibu_gt=${ibu}&ebc_gt=${ebc}`
-      : `page=${page}&per_page=9`
-  }`;
+  const url = getUrl(searchText, abv, ibu, ebc, page);
 
   const request = () => dispatch(requestBeers());
   const receive = searchText
@@ -40,12 +37,19 @@ export const searchChange = createAction('SEARCH_CHANGE', (searchText, abv, ibu,
   ebc,
 }));
 
-export const searchDataChange = (searchText, ...args) => (dispatch) => {
+export const searchDataChange = (searchText, abv, ibu, ebc) => (dispatch) => {
+  let newAbv = abv;
+  let newIbu = ibu;
+  let newEbc = ebc;
+
   if (!searchText) {
     dispatch(clearBears());
+    newAbv = MIN_ABV;
+    newIbu = MIN_IBU;
+    newEbc = MIN_EBC;
   }
 
-  dispatch(searchChange(searchText, ...args));
+  dispatch(searchChange(searchText, newAbv, newIbu, newEbc));
 };
 
 export const addFavorite = createAction('ADD_FAVORITE');
