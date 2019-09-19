@@ -21,8 +21,8 @@ export const getBeers = (page = 1) => (dispatch, getStore) => {
 
   const request = () => dispatch(requestBeers());
   const receive = searchText
-    ? response => dispatch(receiveSearchedBeers(JSON.parse(response)))
-    : response => dispatch(receiveBeers(JSON.parse(response)));
+    ? response => dispatch(receiveSearchedBeers(response))
+    : response => dispatch(receiveBeers(response));
   const error = () => dispatch(errorBeers());
 
   sendRequest(url, request, receive, error);

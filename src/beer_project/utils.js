@@ -30,25 +30,34 @@ export const getPagesArray = (pagesCount, currentPage, pagesVisible) => {
   return [...Array(pagesVisible).keys()].map(item => item + addition);
 };
 
+// export const sendRequest = (url, request, receive, error) => {
+//   request();
+
+//   const xhr = new XMLHttpRequest();
+
+//   xhr.open('GET', url);
+//   xhr.send();
+
+//   xhr.onreadystatechange = () => {
+//     if (xhr.readyState !== 4) {
+//       return;
+//     }
+
+//     if (xhr.status !== 200) {
+//       error();
+//     }
+
+//     receive(xhr.responseText);
+//   };
+// };
+
 export const sendRequest = (url, request, receive, error) => {
   request();
 
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('GET', url);
-  xhr.send();
-
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState !== 4) {
-      return;
-    }
-
-    if (xhr.status !== 200) {
-      error();
-    }
-
-    receive(xhr.responseText);
-  };
+  fetch(url, { method: 'GET' })
+    .then(response => response.json())
+    .then(json => receive(json))
+    .catch(errorMessage => error(errorMessage));
 };
 
 export const getUrl = (searchText, abv, ibu, ebc, page) => {
