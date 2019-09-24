@@ -20,7 +20,7 @@ function PagesList({ className, pagesCount, currentPage }) {
           'pages-list__prev_disabled': currentPage <= 1,
         })}
       >
-        <Link to={`/favorites/${+currentPage - 1}/`}>
+        <Link to={`/favorites/${parseInt(currentPage, 10) - 1}/`}>
           <button type="button">&laquo;</button>
         </Link>
       </li>
@@ -38,7 +38,7 @@ function PagesList({ className, pagesCount, currentPage }) {
           'pages-list__next_disabled': currentPage >= pagesCount,
         })}
       >
-        <Link to={`/favorites/${+currentPage + 1}/`}>
+        <Link to={`/favorites/${parseInt(currentPage, 10) + 1}/`}>
           <button type="button">&raquo;</button>
         </Link>
       </li>

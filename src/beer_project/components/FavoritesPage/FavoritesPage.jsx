@@ -37,8 +37,8 @@ function FavoritesPage({ beers, onRemoveFavoriteClicked, match }) {
       ) : (
         <PagesList
           className="favorites-page__pages-list"
-          pagesCount={+pagesCount}
-          currentPage={+currentPage}
+          pagesCount={parseInt(pagesCount, 10)}
+          currentPage={parseInt(currentPage, 10)}
         />
       )}
     </div>

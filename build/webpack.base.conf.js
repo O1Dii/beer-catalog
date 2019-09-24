@@ -14,7 +14,7 @@ module.exports = {
     paths: PATHS,
   },
   entry: {
-    app: path.join(PATHS.src, 'index.js'),
+    app: path.join(PATHS.src, 'index.jsx'),
   },
   output: {
     filename: `${PATHS.assets}js/[name].[hash].js`,

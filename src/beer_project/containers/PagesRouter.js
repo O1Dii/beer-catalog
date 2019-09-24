@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   getBeers, addFavorite, removeFavorite, searchDataChange,
 } from '../actions';
-import { isIdFavoriteSelector, getFavoriteBeers, getBeerById } from '../selectors';
+import { getFavoriteBeers } from '../selectors';
 
 import Router from '../components/PagesRouter/PagesRouter';
 
@@ -14,10 +14,7 @@ const mapStateToProps = state => ({
   abv: state.get('abv'),
   ibu: state.get('ibu'),
   ebc: state.get('ebc'),
-
-  isIdFavorite: id => isIdFavoriteSelector(state, id),
-  getFavoriteBeers: () => getFavoriteBeers(state),
-  getBeerById: id => getBeerById(state, id),
+  favoriteBeers: getFavoriteBeers(state),
 });
 
 const mapDispatchToProps = {

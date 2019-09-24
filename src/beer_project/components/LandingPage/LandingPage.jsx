@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Map } from 'immutable';
 
 import SearchBox from '../SearchBox/SearchBox';
-import VerticalBeerTemplate from '../VerticalBeerTemplate/VerticalBeerTemplate';
+import VerticalBeerTemplate from '../../containers/VerticalBeerTemplate';
 
 import { ITEMS_PER_LANDING_PAGE } from '../../constants';
 
@@ -17,7 +17,6 @@ function LandingPage({
   onSearchChange,
   onFavoriteClicked,
   onRemoveFavoriteClicked,
-  isIdFavorite,
   abv,
   ibu,
   ebc,
@@ -67,7 +66,6 @@ function LandingPage({
               title={item.get('name')}
               tagline={item.get('tagline')}
               image={item.get('image_url')}
-              favorite={isIdFavorite(item.get('id'))}
               onFavoriteClicked={onFavoriteClicked}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
             />
@@ -83,7 +81,6 @@ LandingPage.propTypes = {
   onSearchChange: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
-  isIdFavorite: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
 

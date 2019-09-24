@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
 import BeerShortDescription from '../BeerShortDescription/BeerShortDescription';
 import Properties from '../Properties/Properties';
@@ -11,14 +12,8 @@ import Method from '../Method/Method';
 import './DetailPage.scss';
 
 function DetailPage({
-  match,
-  getBeerById,
-  onFavoriteClicked,
-  onRemoveFavoriteClicked,
-  isIdFavorite,
+  onFavoriteClicked, onRemoveFavoriteClicked, favorite, beer,
 }) {
-  const beer = getBeerById(match.params.id);
-
   return (
     <div className="detail-page">
       <BeerShortDescription
@@ -28,7 +23,7 @@ function DetailPage({
         tagline={beer.get('tagline')}
         description={beer.get('description')}
         image={beer.get('image_url')}
-        favorite={isIdFavorite(beer.get('id'))}
+        favorite={favorite}
         onFavoriteClicked={onFavoriteClicked}
         onRemoveFavoriteClicked={onRemoveFavoriteClicked}
       />
@@ -56,12 +51,11 @@ function DetailPage({
 }
 
 DetailPage.propTypes = {
-  getBeerById: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
-  isIdFavorite: PropTypes.func.isRequired,
 
-  match: PropTypes.objectOf(PropTypes.any).isRequired,
+  beer: PropTypes.instanceOf(Map).isRequired,
+  favorite: PropTypes.bool.isRequired,
 };
 
 export default DetailPage;

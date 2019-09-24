@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import useOnClickOutside from 'use-onclickoutside';
 import classNames from 'classnames';
@@ -9,7 +9,7 @@ import Navbar from '../Navbar/Navbar';
 import SideMenu from '../SideMenu/SideMenu';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import LandingPage from '../LandingPage/LandingPage';
-import DetailPage from '../DetailPage/DetailPage';
+import DetailPage from '../../containers/DetailPage';
 
 import './PagesRouter.scss';
 
@@ -20,22 +20,20 @@ function PagesRouter({
   onSearchChange,
   onFavoriteClicked,
   onRemoveFavoriteClicked,
-  isIdFavorite,
-  getFavoriteBeers,
-  getBeerById,
+  favoriteBeers,
   abv,
   ibu,
   ebc,
 }) {
   const [open, setOpen] = useState(false);
 
-  const onMenuOpen = () => {
+  const onMenuOpen = useCallback(() => {
     setOpen(!open);
-  };
+  }, [setOpen, open]);
 
-  const onOutsideClick = () => {
+  const onOutsideClick = useCallback(() => {
     setOpen(false);
-  };
+  }, [setOpen]);
 
   const ref = React.useRef(null);
   useOnClickOutside(ref, onOutsideClick);
@@ -63,7 +61,6 @@ function PagesRouter({
               beers={beers}
               onFavoriteClicked={onFavoriteClicked}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
-              isIdFavorite={isIdFavorite}
               searchText={searchText}
               abv={abv}
               ibu={ibu}
@@ -76,7 +73,7 @@ function PagesRouter({
           render={props => (
             <FavoritesPage
               {...props}
-              beers={getFavoriteBeers()}
+              beers={favoriteBeers}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
             />
           )}
@@ -86,10 +83,8 @@ function PagesRouter({
           render={props => (
             <DetailPage
               {...props}
-              getBeerById={getBeerById}
               onFavoriteClicked={onFavoriteClicked}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
-              isIdFavorite={isIdFavorite}
             />
           )}
         />
@@ -103,11 +98,9 @@ PagesRouter.propTypes = {
   onSearchChange: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
-  isIdFavorite: PropTypes.func.isRequired,
-  getFavoriteBeers: PropTypes.func.isRequired,
-  getBeerById: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
+  favoriteBeers: PropTypes.instanceOf(Map).isRequired,
 
   searchText: PropTypes.string.isRequired,
   abv: PropTypes.number.isRequired,

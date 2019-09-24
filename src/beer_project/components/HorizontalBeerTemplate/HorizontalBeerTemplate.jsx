@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -14,9 +14,9 @@ function HorizontalBeerTemplate({
   onRemoveFavoriteClicked,
   id,
 }) {
-  const onRemoveFavoriteButtonClicked = () => {
+  const onRemoveFavoriteButtonClicked = useCallback(() => {
     onRemoveFavoriteClicked(id);
-  };
+  }, [id]);
 
   return (
     <div className={classNames('horizontal-beer-template', className)}>

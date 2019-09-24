@@ -6,7 +6,7 @@ import {
   searchChange,
   addFavorite,
   removeFavorite,
-  receiveSearchedBeers,
+  replaceBeers,
   clearBears,
 } from '../actions';
 import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
@@ -17,8 +17,8 @@ const main = handleActions(
       Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
     )),
 
-    [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
-    [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
+    [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(parseInt(payload, 10))),
+    [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(parseInt(payload, 10)))),
 
     [searchChange]: (state, { payload }) => state
       .set('searchText', payload.searchText)
@@ -26,12 +26,12 @@ const main = handleActions(
       .set('ibu', payload.ibu)
       .set('ebc', payload.ebc),
 
-    [receiveSearchedBeers]: (state, { payload }) => state.set(
+    [replaceBeers]: (state, { payload }) => state.set(
       'beers',
       Immutable.OrderedMap(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
     ),
 
-    [clearBears]: state => state.update('beers', oldBeers => oldBeers.clear()),
+    [clearBears]: state => state.set('beers', Immutable.OrderedMap()),
   },
   Immutable.Map({
     beers: Immutable.OrderedMap(),

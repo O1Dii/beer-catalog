@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import { chooseFunction } from '../../utils';
 
 import './BeerShortDescription.scss';
 
@@ -19,13 +17,10 @@ function BeerShortDescription({
 }) {
   const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
 
-  const favoriteButtonClickHandler = chooseFunction(
-    favorite,
-    onFavoriteClicked,
-    onRemoveFavoriteClicked,
+  const onFavoriteButtonClicked = useCallback(
+    () => (favorite ? onRemoveFavoriteClicked(id) : onFavoriteClicked(id)),
+    [favorite, id],
   );
-
-  const onFavoriteButtonClicked = () => favoriteButtonClickHandler(id);
 
   return (
     <div className={classNames('beer-short-description', className)}>

@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-
-import { chooseFunction } from '../../utils';
 
 import './VerticalBeerTemplate.scss';
 
@@ -17,15 +15,12 @@ function VerticalBeerTemplate({
   favorite,
   id,
 }) {
-  const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
+  const favoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
 
-  const favoriteButtonClickHandler = chooseFunction(
-    favorite,
-    onFavoriteClicked,
-    onRemoveFavoriteClicked,
+  const onFavoriteButtonClicked = useCallback(
+    () => (favorite ? onRemoveFavoriteClicked(id) : onFavoriteClicked(id)),
+    [favorite, id],
   );
-
-  const onFavoriteButtonClicked = () => favoriteButtonClickHandler(id);
 
   return (
     <div className={classNames('vertical-beer-template', className)}>
@@ -42,7 +37,7 @@ function VerticalBeerTemplate({
             type="button"
             onClick={onFavoriteButtonClicked}
           >
-            {FavoriteButtonTitle}
+            {favoriteButtonTitle}
           </button>
         </div>
       </div>

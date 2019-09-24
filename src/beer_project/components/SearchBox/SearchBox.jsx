@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -18,10 +18,13 @@ function SearchBox({
     setSearchValue(e.target.value);
   };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(searchValue, newAbv, newIbu, newEbc);
-  };
+  const onFormSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      onSubmit(searchValue, newAbv, newIbu, newEbc);
+    },
+    [searchValue, newAbv, newIbu, newEbc],
+  );
 
   useEffect(() => {
     setAbv(abv);

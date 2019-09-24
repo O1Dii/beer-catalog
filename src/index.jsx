@@ -6,9 +6,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import App from './beer_project/components/App/App';
-import beer from './beer_project/reducers';
+import reducer from './beer_project/reducers';
 
-const store = createStore(beer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
