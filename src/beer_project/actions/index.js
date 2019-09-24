@@ -43,8 +43,6 @@ export const getBeers = (page = 1) => (dispatch, getStore) => {
     searchText ? queryString.stringify(searchParams) : queryString.stringify(pageParams)
   }`;
 
-  console.log(url);
-
   dispatch(requestBeers());
 
   requests
