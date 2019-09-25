@@ -15,7 +15,7 @@ function BeerShortDescription({
   onFavoriteClicked,
   onRemoveFavoriteClicked,
 }) {
-  const FavoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
+  const favoriteButtonTitle = favorite ? 'Remove Favorite' : 'Favorite';
 
   const onFavoriteButtonClicked = useCallback(
     () => (favorite ? onRemoveFavoriteClicked(id) : onFavoriteClicked(id)),
@@ -32,7 +32,7 @@ function BeerShortDescription({
           className="beer-short-description__favorite-button"
           onClick={onFavoriteButtonClicked}
         >
-          {FavoriteButtonTitle}
+          {favoriteButtonTitle}
         </button>
         <p className="beer-short-description__text">{description}</p>
       </div>

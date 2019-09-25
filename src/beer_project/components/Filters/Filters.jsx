@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -9,17 +9,17 @@ import './Filters.scss';
 function Filters({
   className, abv, ibu, ebc, setAbv, setIbu, setEbc,
 }) {
-  const onAbvChange = (e, newValue) => {
+  const onAbvChange = useCallback((e, newValue) => {
     setAbv(newValue);
-  };
+  }, []);
 
-  const onIbuChange = (e, newValue) => {
+  const onIbuChange = useCallback((e, newValue) => {
     setIbu(newValue);
-  };
+  }, []);
 
-  const onEbcChange = (e, newValue) => {
+  const onEbcChange = useCallback((e, newValue) => {
     setEbc(newValue);
-  };
+  }, []);
 
   return (
     <div className={classNames('filters', className)}>

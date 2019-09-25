@@ -22,8 +22,6 @@ function VerticalBeerTemplate({
     [favorite, id],
   );
 
-  console.log(image);
-
   return (
     <div className={classNames('vertical-beer-template', className)}>
       <img src={image} className="vertical-beer-template__image" alt="beer" />

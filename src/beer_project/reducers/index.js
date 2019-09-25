@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 
 import {
   receiveBeers,
-  searchChange,
+  changeSearch,
   addFavorite,
   removeFavorite,
   replaceBeers,
@@ -20,7 +20,7 @@ const main = handleActions(
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(parseInt(payload, 10))),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(parseInt(payload, 10)))),
 
-    [searchChange]: (state, { payload }) => state
+    [changeSearch]: (state, { payload }) => state
       .set('searchText', payload.searchText)
       .set('abv', payload.abv)
       .set('ibu', payload.ibu)

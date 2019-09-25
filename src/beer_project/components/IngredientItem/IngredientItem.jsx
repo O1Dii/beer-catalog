@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { List } from 'immutable';
 import uuid from 'uuid/v4';
+import _ from 'lodash';
 
 function IngredientItem({ className, ingredient }) {
-  if (typeof ingredient === 'string') {
+  if (_.isString(ingredient)) {
     return (
       <span className={classNames('ingredient-item', className)}>
         <p className="ingredient-item__section">{ingredient}</p>

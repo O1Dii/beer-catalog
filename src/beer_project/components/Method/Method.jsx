@@ -30,9 +30,7 @@ function Method({ className, method }) {
         </li>
         <li className="method__list-item">
           <p className="method__item-name">Twist</p>
-          <p className="method__item-description">
-            {method.get('twist') ? method.get('twist') : 'no twist'}
-          </p>
+          <p className="method__item-description">{method.get('twist') || 'no twist'}</p>
         </li>
       </ul>
     </div>

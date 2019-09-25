@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import {
-  getBeers, addFavorite, removeFavorite, searchDataChange,
+  getBeers, addFavorite, removeFavorite, changeSearchData,
 } from '../actions';
 import { getFavoriteBeers } from '../selectors';
 
@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   loadBeers: getBeers,
-  onSearchChange: searchDataChange,
+  onSearchChange: changeSearchData,
   onFavoriteClicked: addFavorite,
   onRemoveFavoriteClicked: removeFavorite,
 };

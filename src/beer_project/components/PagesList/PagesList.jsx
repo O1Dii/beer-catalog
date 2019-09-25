@@ -9,9 +9,9 @@ import { VISIBLE_PAGES } from '../../constants';
 import './PagesList.scss';
 
 function PagesList({ className, pagesCount, currentPage }) {
-  const pagesVisible = pagesCount > VISIBLE_PAGES ? VISIBLE_PAGES : pagesCount;
+  const visiblePages = pagesCount > VISIBLE_PAGES ? VISIBLE_PAGES : pagesCount;
 
-  const pages = getPagesArray(pagesCount, currentPage, pagesVisible);
+  const pages = getPagesArray(pagesCount, currentPage, visiblePages);
 
   return (
     <ul className={classNames('pages-list', className)}>

@@ -13,7 +13,7 @@ export const errorBeers = createAction('ERROR_BEERS');
 
 export const replaceBeers = createAction('REPLACE_BEERS');
 
-export const getBeers = (page = 1) => (dispatch, getStore) => {
+export const getBeers = (page = 1) => async (dispatch, getStore) => {
   const store = getStore();
 
   const searchText = store.get('searchText');
@@ -21,47 +21,48 @@ export const getBeers = (page = 1) => (dispatch, getStore) => {
   const ibu = store.get('ibu');
   const ebc = store.get('ebc');
 
-  let searchParams = {
+  const searchParams = {
     beer_name: searchText,
-    abv_gt: Math.max(abv - 0.1, MIN_ABV),
-    abv_lt: abv + 1,
-    ibu_gt: Math.max(ibu - 0.1, MIN_IBU),
-    ibu_lt: ibu + 1,
-    ebc_gt: Math.max(ebc - 0.1, MIN_EBC),
-    ebc_lt: ebc + 1,
   };
 
   if (abv === MIN_ABV && ibu === MIN_IBU && ebc === MIN_EBC) {
-    searchParams = {
-      beer_name: searchText,
-    };
+    searchParams.abv_gt = Math.max(abv - 0.1, MIN_ABV);
+    searchParams.abv_lt = abv + 1;
+    searchParams.ibu_gt = Math.max(ibu - 0.1, MIN_IBU);
+    searchParams.ibu_lt = ibu + 1;
+    searchParams.ebc_gt = Math.max(ebc - 0.1, MIN_EBC);
+    searchParams.ebc_lt = ebc + 1;
   }
 
   const pageParams = { page, per_page: ITEMS_PER_LANDING_PAGE };
 
-  const url = `${API_URL}?${
-    searchText ? queryString.stringify(searchParams) : queryString.stringify(pageParams)
-  }`;
-
   dispatch(requestBeers());
 
-  requests
-    .GET(url)
-    .then(response => response.json())
-    .then(json => (searchText ? dispatch(replaceBeers(json)) : dispatch(receiveBeers(json))))
-    .catch(errorMessage => errorBeers(errorMessage));
+  try {
+    const response = await requests.GET(API_URL, searchText ? searchParams : pageParams);
+    const json = await response.json();
+
+    if (searchText) {
+      dispatch(replaceBeers(json));
+      return;
+    }
+
+    dispatch(receiveBeers(json));
+  } catch (errorMessage) {
+    dispatch(errorBeers(errorMessage));
+  }
 };
 
 export const clearBears = createAction('CLEAR_BEARS');
 
-export const searchChange = createAction('SEARCH_CHANGE', (searchText, abv, ibu, ebc) => ({
+export const changeSearch = createAction('SEARCH_CHANGE', (searchText, abv, ibu, ebc) => ({
   searchText,
   abv,
   ibu,
   ebc,
 }));
 
-export const searchDataChange = (searchText, abv, ibu, ebc) => (dispatch, getStore) => {
+export const changeSearchData = (searchText, abv, ibu, ebc) => (dispatch, getStore) => {
   let newAbv = abv;
   let newIbu = ibu;
   let newEbc = ebc;
@@ -73,7 +74,7 @@ export const searchDataChange = (searchText, abv, ibu, ebc) => (dispatch, getSto
     newEbc = MIN_EBC;
   }
 
-  dispatch(searchChange(searchText, newAbv, newIbu, newEbc));
+  dispatch(changeSearch(searchText, newAbv, newIbu, newEbc));
 };
 
 export const addFavorite = createAction('ADD_FAVORITE');

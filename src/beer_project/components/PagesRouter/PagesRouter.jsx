@@ -29,11 +29,11 @@ function PagesRouter({
 
   const onMenuOpen = useCallback(() => {
     setOpen(!open);
-  }, [setOpen, open]);
+  }, [open]);
 
   const onOutsideClick = useCallback(() => {
     setOpen(false);
-  }, [setOpen]);
+  }, []);
 
   const ref = React.useRef(null);
   useOnClickOutside(ref, onOutsideClick);
