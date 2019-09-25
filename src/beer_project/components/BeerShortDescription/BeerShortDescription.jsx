@@ -51,11 +51,13 @@ BeerShortDescription.propTypes = {
   title: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
+
+  image: PropTypes.string,
 };
 
 BeerShortDescription.defaultProps = {
+  image: 'https://images.punkapi.com/v2/keg.png',
   className: '',
 };
 

@@ -22,7 +22,7 @@ function DetailPage({
         title={beer.get('name')}
         tagline={beer.get('tagline')}
         description={beer.get('description')}
-        image={beer.get('image_url')}
+        image={beer.get('image_url') || undefined}
         favorite={favorite}
         onFavoriteClicked={onFavoriteClicked}
         onRemoveFavoriteClicked={onRemoveFavoriteClicked}

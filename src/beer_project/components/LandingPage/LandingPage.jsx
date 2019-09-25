@@ -65,7 +65,7 @@ function LandingPage({
               id={item.get('id')}
               title={item.get('name')}
               tagline={item.get('tagline')}
-              image={item.get('image_url')}
+              image={item.get('image_url') || undefined}
               onFavoriteClicked={onFavoriteClicked}
               onRemoveFavoriteClicked={onRemoveFavoriteClicked}
             />

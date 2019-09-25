@@ -27,7 +27,7 @@ function FavoritesPage({ beers, onRemoveFavoriteClicked, match }) {
             title={item.get('name')}
             tagline={item.get('tagline')}
             description={item.get('description')}
-            image={item.get('image_url')}
+            image={item.get('image_url') || undefined}
             onRemoveFavoriteClicked={onRemoveFavoriteClicked}
           />
         ))

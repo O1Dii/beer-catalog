@@ -55,10 +55,12 @@ HorizontalBeerTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+
+  image: PropTypes.string,
 };
 
 HorizontalBeerTemplate.defaultProps = {
+  image: 'https://images.punkapi.com/v2/keg.png',
   className: '',
 };
 

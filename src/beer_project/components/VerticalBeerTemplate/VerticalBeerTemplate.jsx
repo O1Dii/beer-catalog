@@ -22,6 +22,8 @@ function VerticalBeerTemplate({
     [favorite, id],
   );
 
+  console.log(image);
+
   return (
     <div className={classNames('vertical-beer-template', className)}>
       <img src={image} className="vertical-beer-template__image" alt="beer" />
@@ -55,10 +57,11 @@ VerticalBeerTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 VerticalBeerTemplate.defaultProps = {
+  image: 'https://images.punkapi.com/v2/keg.png',
   className: '',
 };
 
