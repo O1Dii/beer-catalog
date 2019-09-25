@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onLandingPageMount: getBeers,
+  loadBeers: getBeers,
   onSearchChange: searchDataChange,
   onFavoriteClicked: addFavorite,
   onRemoveFavoriteClicked: removeFavorite,

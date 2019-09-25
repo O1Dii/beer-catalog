@@ -11,7 +11,7 @@ import { ITEMS_PER_LANDING_PAGE } from '../../constants';
 import './LandingPage.scss';
 
 function LandingPage({
-  onMount,
+  loadBeers,
   beers,
   searchText,
   onSearchChange,
@@ -29,14 +29,14 @@ function LandingPage({
   const onScroll = () => {
     setCurrentBeersCount(beers.count());
 
-    onMount(page);
+    loadBeers(page);
     setPage(page + 1);
   };
 
   useEffect(() => {
     setCurrentBeersCount(0);
 
-    onMount();
+    loadBeers();
     setPage((Math.ceil(beers.count() / ITEMS_PER_LANDING_PAGE) || 1) + 1);
   }, [searchText, abv, ibu, ebc]);
 
@@ -77,7 +77,7 @@ function LandingPage({
 }
 
 LandingPage.propTypes = {
-  onMount: PropTypes.func.isRequired,
+  loadBeers: PropTypes.func.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,

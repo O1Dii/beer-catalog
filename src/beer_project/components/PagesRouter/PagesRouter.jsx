@@ -14,7 +14,7 @@ import DetailPage from '../../containers/DetailPage';
 import './PagesRouter.scss';
 
 function PagesRouter({
-  onLandingPageMount,
+  loadBeers,
   beers,
   searchText,
   onSearchChange,
@@ -56,7 +56,7 @@ function PagesRouter({
           render={props => (
             <LandingPage
               {...props}
-              onMount={onLandingPageMount}
+              loadBeers={loadBeers}
               onSearchChange={onSearchChange}
               beers={beers}
               onFavoriteClicked={onFavoriteClicked}
@@ -94,7 +94,7 @@ function PagesRouter({
 }
 
 PagesRouter.propTypes = {
-  onLandingPageMount: PropTypes.func.isRequired,
+  loadBeers: PropTypes.func.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
