@@ -1,7 +1,9 @@
-export const GET = (baseUrl, params) => {
-  const url = `${baseUrl}?${
-    searchText ? queryString.stringify(searchParams) : queryString.stringify(pageParams)
-  }`;
+import queryString from 'query-string';
 
-  fetch(url, { method: 'GET' });
+export const GET = (baseUrl, params) => {
+  const url = `${baseUrl}?${queryString.stringify(params)}`;
+
+  console.log(url);
+
+  return fetch(url, { method: 'GET' });
 };

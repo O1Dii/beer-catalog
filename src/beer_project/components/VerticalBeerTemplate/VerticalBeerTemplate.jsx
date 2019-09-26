@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { DEFAULT_IMAGE_URL } from '../../constants';
+
 import './VerticalBeerTemplate.scss';
 
 function VerticalBeerTemplate({
@@ -59,7 +61,7 @@ VerticalBeerTemplate.propTypes = {
 };
 
 VerticalBeerTemplate.defaultProps = {
-  image: 'https://images.punkapi.com/v2/keg.png',
+  image: DEFAULT_IMAGE_URL,
   className: '',
 };
 

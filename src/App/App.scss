@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import "../beer_project/variables.scss";
 
 body {
   display: block;
@@ -19,4 +19,8 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.app {
+  position: relative;
 }

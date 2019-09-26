@@ -41,6 +41,7 @@ module.exports = {
         exclude: '/node_modules/',
         query: {
           presets: ['@babel/env', '@babel/react'],
+          plugins: ['syntax-async-functions', 'transform-regenerator'],
         },
       },
       {

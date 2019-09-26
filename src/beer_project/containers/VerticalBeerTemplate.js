@@ -4,8 +4,8 @@ import { isIdFavoriteSelector } from '../selectors';
 
 import BeerTemplate from '../components/VerticalBeerTemplate/VerticalBeerTemplate';
 
-const mapStateToProps = (state, { id }) => ({
-  favorite: isIdFavoriteSelector(state, id),
+const mapStateToProps = (store, { id }) => ({
+  favorite: isIdFavoriteSelector(store.get('beer'), id),
 });
 
 const VerticalBeerTemplate = connect(mapStateToProps)(BeerTemplate);

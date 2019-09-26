@@ -1,4 +1,5 @@
 export const API_URL = 'https://api.punkapi.com/v2/beers';
+export const DEFAULT_IMAGE_URL = 'https://images.punkapi.com/v2/keg.png';
 export const MIN_ABV = 2;
 export const MAX_ABV = 14;
 export const MIN_IBU = 0;

@@ -1,5 +1,5 @@
+import 'babel-polyfill';
 import { createAction } from 'redux-actions';
-import queryString from 'query-string';
 
 import * as requests from '../requests';
 
@@ -14,7 +14,7 @@ export const errorBeers = createAction('ERROR_BEERS');
 export const replaceBeers = createAction('REPLACE_BEERS');
 
 export const getBeers = (page = 1) => async (dispatch, getStore) => {
-  const store = getStore();
+  const store = getStore().get('beer');
 
   const searchText = store.get('searchText');
   const abv = store.get('abv');
@@ -25,7 +25,7 @@ export const getBeers = (page = 1) => async (dispatch, getStore) => {
     beer_name: searchText,
   };
 
-  if (abv === MIN_ABV && ibu === MIN_IBU && ebc === MIN_EBC) {
+  if (abv !== MIN_ABV || ibu !== MIN_IBU || ebc !== MIN_EBC) {
     searchParams.abv_gt = Math.max(abv - 0.1, MIN_ABV);
     searchParams.abv_lt = abv + 1;
     searchParams.ibu_gt = Math.max(ibu - 0.1, MIN_IBU);
@@ -67,7 +67,7 @@ export const changeSearchData = (searchText, abv, ibu, ebc) => (dispatch, getSto
   let newIbu = ibu;
   let newEbc = ebc;
 
-  if (!searchText && searchText !== getStore().get('searchText')) {
+  if (!searchText && searchText !== getStore().getIn(['beer', 'searchText'])) {
     dispatch(clearBears());
     newAbv = MIN_ABV;
     newIbu = MIN_IBU;
