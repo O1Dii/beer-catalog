@@ -21,16 +21,12 @@ function LandingPage({
   ibu,
   ebc,
 }) {
-  const [page, setPage] = useState(1);
-
   const onScroll = () => {
-    loadBeers(page);
-    setPage(page + 1);
+    loadBeers(currentPage);
   };
 
   useEffect(() => {
     loadBeers();
-    setPage(currentPage);
   }, [searchText, abv, ibu, ebc]);
 
   return (
