@@ -14,16 +14,19 @@ function SearchBox({
   const [newIbu, setIbu] = useState(ibu);
   const [newEbc, setEbc] = useState(ebc);
 
-  const onInputChange = (e) => {
-    setSearchValue(e.target.value);
-  };
+  const onInputChange = useCallback(
+    (e) => {
+      setSearchValue(e.target.value);
+    },
+    [setSearchValue],
+  );
 
   const onFormSubmit = useCallback(
     (e) => {
       e.preventDefault();
       onSubmit(searchValue, newAbv, newIbu, newEbc);
     },
-    [searchValue, newAbv, newIbu, newEbc],
+    [searchValue, newAbv, newIbu, newEbc, onSubmit],
   );
 
   useEffect(() => {

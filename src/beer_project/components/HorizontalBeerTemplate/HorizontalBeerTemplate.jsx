@@ -18,7 +18,7 @@ function HorizontalBeerTemplate({
 }) {
   const onRemoveFavoriteButtonClicked = useCallback(() => {
     onRemoveFavoriteClicked(id);
-  }, [id]);
+  }, [id, onRemoveFavoriteClicked]);
 
   return (
     <div className={classNames('horizontal-beer-template', className)}>

@@ -12,11 +12,11 @@ function Navigation() {
 
   const onMenuOpen = useCallback(() => {
     setOpen(!open);
-  }, [open]);
+  }, [open, setOpen]);
 
   const onOutsideClick = useCallback(() => {
     setOpen(false);
-  }, []);
+  }, [setOpen]);
 
   const ref = React.useRef(null);
   useOnClickOutside(ref, onOutsideClick);

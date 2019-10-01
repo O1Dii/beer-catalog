@@ -21,7 +21,7 @@ function BeerShortDescription({
 
   const onFavoriteButtonClicked = useCallback(
     () => (favorite ? onRemoveFavoriteClicked(id) : onFavoriteClicked(id)),
-    [favorite, id],
+    [favorite, id, onRemoveFavoriteClicked, onFavoriteClicked],
   );
 
   return (

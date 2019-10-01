@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Map } from 'immutable';
@@ -21,13 +21,15 @@ function LandingPage({
   ibu,
   ebc,
 }) {
-  const onScroll = () => {
+  const onScroll = useCallback(() => {
     loadBeers(currentPage);
-  };
+  }, [currentPage, loadBeers]);
 
   useEffect(() => {
-    loadBeers();
-  }, [searchText, abv, ibu, ebc]);
+    if (currentPage < 2 || searchText) {
+      loadBeers();
+    }
+  }, [currentPage, searchText, abv, ibu, ebc]);
 
   return (
     <div className="landing-page">

@@ -5,20 +5,21 @@ import { Map } from 'immutable';
 import HorizontalBeerTemplate from '../HorizontalBeerTemplate/HorizontalBeerTemplate';
 import PagesList from '../PagesList/PagesList';
 
-import { ITEMS_PER_FAVORITE_PAGE } from '../../constants';
-
 import './FavoritesPage.scss';
 
-function FavoritesPage({ beers, onRemoveFavoriteClicked, match }) {
-  const beersPerPage = ITEMS_PER_FAVORITE_PAGE;
-  const pagesCount = Math.ceil(beers.count() / beersPerPage);
-  const currentPage = match.params.page;
-
+function FavoritesPage({
+  beers,
+  onRemoveFavoriteClicked,
+  pagesCount,
+  currentPage,
+  BeersStart,
+  BeersEnd,
+}) {
   return (
     <div className="favorites-page">
       <h3 className="favorites-page__title">Your favorite beers</h3>
       {beers
-        .slice((currentPage - 1) * beersPerPage, currentPage * beersPerPage)
+        .slice(BeersStart, BeersEnd)
         .map(item => (
           <HorizontalBeerTemplate
             className="favorites-page__item"
@@ -50,7 +51,10 @@ FavoritesPage.propTypes = {
 
   beers: PropTypes.instanceOf(Map).isRequired,
 
-  match: PropTypes.objectOf(PropTypes.any).isRequired,
+  pagesCount: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  BeersStart: PropTypes.number.isRequired,
+  BeersEnd: PropTypes.number.isRequired,
 };
 
 export default FavoritesPage;

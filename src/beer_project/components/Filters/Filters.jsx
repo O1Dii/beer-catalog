@@ -9,17 +9,26 @@ import './Filters.scss';
 function Filters({
   className, abv, ibu, ebc, setAbv, setIbu, setEbc,
 }) {
-  const onAbvChange = useCallback((e, newValue) => {
-    setAbv(newValue);
-  }, []);
+  const onAbvChange = useCallback(
+    (e, newValue) => {
+      setAbv(newValue);
+    },
+    [setAbv],
+  );
 
-  const onIbuChange = useCallback((e, newValue) => {
-    setIbu(newValue);
-  }, []);
+  const onIbuChange = useCallback(
+    (e, newValue) => {
+      setIbu(newValue);
+    },
+    [setIbu],
+  );
 
-  const onEbcChange = useCallback((e, newValue) => {
-    setEbc(newValue);
-  }, []);
+  const onEbcChange = useCallback(
+    (e, newValue) => {
+      setEbc(newValue);
+    },
+    [setEbc],
+  );
 
   return (
     <div className={classNames('filters', className)}>
