@@ -6,13 +6,13 @@ import { Map } from 'immutable';
 import SearchBox from '../SearchBox/SearchBox';
 import VerticalBeerTemplate from '../../containers/VerticalBeerTemplate';
 
-import { ITEMS_PER_LANDING_PAGE } from '../../constants';
-
 import './LandingPage.scss';
 
 function LandingPage({
   loadBeers,
   beers,
+  currentPage,
+  hasMoreItems,
   searchText,
   onSearchChange,
   onFavoriteClicked,
@@ -22,22 +22,15 @@ function LandingPage({
   ebc,
 }) {
   const [page, setPage] = useState(1);
-  const [currentBeersCount, setCurrentBeersCount] = useState(0);
-
-  const hasMoreItems = !searchText && currentBeersCount !== beers.count();
 
   const onScroll = () => {
-    setCurrentBeersCount(beers.count());
-
     loadBeers(page);
     setPage(page + 1);
   };
 
   useEffect(() => {
-    setCurrentBeersCount(0);
-
     loadBeers();
-    setPage((Math.ceil(beers.count() / ITEMS_PER_LANDING_PAGE) || 1) + 1);
+    setPage(currentPage);
   }, [searchText, abv, ibu, ebc]);
 
   return (
@@ -53,7 +46,7 @@ function LandingPage({
       {beers.isEmpty() && <p className="landing-page__nothing-found-title">Nothing found</p>}
       <InfiniteScroll
         className="landing-page__items-container"
-        dataLength={currentBeersCount}
+        dataLength={beers.count()}
         next={onScroll}
         hasMore={hasMoreItems}
       >
@@ -84,6 +77,8 @@ LandingPage.propTypes = {
 
   beers: PropTypes.instanceOf(Map).isRequired,
 
+  hasMoreItems: PropTypes.bool.isRequired,
+  currentPage: PropTypes.number.isRequired,
   searchText: PropTypes.string.isRequired,
   abv: PropTypes.number.isRequired,
   ibu: PropTypes.number.isRequired,

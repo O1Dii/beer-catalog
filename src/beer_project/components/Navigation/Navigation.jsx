@@ -7,7 +7,7 @@ import SideMenu from '../SideMenu/SideMenu';
 
 import './Navigation.scss';
 
-function PagesRouter() {
+function Navigation() {
   const [open, setOpen] = useState(false);
 
   const onMenuOpen = useCallback(() => {
@@ -36,4 +36,4 @@ function PagesRouter() {
   );
 }
 
-export default PagesRouter;
+export default Navigation;

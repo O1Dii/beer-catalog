@@ -6,8 +6,14 @@ import {
 
 import Page from '../components/LandingPage/LandingPage';
 
+import { ITEMS_PER_LANDING_PAGE } from '../constants';
+
 const mapStateToProps = store => ({
   beers: store.getIn(['beer', 'beers']),
+
+  currentPage:
+    (Math.ceil(store.getIn(['beer', 'beers']).count() / ITEMS_PER_LANDING_PAGE) || 1) + 1,
+  hasMoreItems: !store.getIn(['beer', 'searchText']),
 
   searchText: store.getIn(['beer', 'searchText']),
   abv: store.getIn(['beer', 'abv']),
