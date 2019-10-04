@@ -69,14 +69,13 @@ export const resetFilters = () => (dispatch) => {
 };
 
 export const replaceBeers = () => (dispatch, getStore) => {
-  let filtersVisible = true;
+  const isSearchTextEmpty = !getStore().getIn(['beer', 'searchText']);
 
-  if (!getStore().getIn(['beer', 'searchText'])) {
-    filtersVisible = false;
+  if (isSearchTextEmpty) {
     dispatch(resetFilters());
   }
 
-  dispatch(changeFiltersVisible(filtersVisible));
+  dispatch(changeFiltersVisible(isSearchTextEmpty));
   dispatch(clearBeers());
   dispatch(getBeers());
 };
