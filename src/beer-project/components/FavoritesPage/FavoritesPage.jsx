@@ -12,14 +12,14 @@ function FavoritesPage({
   onRemoveFavoriteClicked,
   pagesCount,
   currentPage,
-  BeersStart,
-  BeersEnd,
+  beersStart,
+  beersEnd,
 }) {
   return (
     <div className="favorites-page">
       <h3 className="favorites-page__title">Your favorite beers</h3>
       {beers
-        .slice(BeersStart, BeersEnd)
+        .slice(beersStart, beersEnd)
         .map(item => (
           <HorizontalBeerTemplate
             className="favorites-page__item"
@@ -53,8 +53,8 @@ FavoritesPage.propTypes = {
 
   pagesCount: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
-  BeersStart: PropTypes.number.isRequired,
-  BeersEnd: PropTypes.number.isRequired,
+  beersStart: PropTypes.number.isRequired,
+  beersEnd: PropTypes.number.isRequired,
 };
 
 export default FavoritesPage;
