@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 
 import {
-  getBeers, addFavorite, removeFavorite, changeSearchData,
+  getBeers,
+  addFavorite,
+  removeFavorite,
+  replaceBeers,
+  changeAbv,
+  changeIbu,
+  changeEbc,
+  changeSearchText,
 } from '../actions';
 
 import Page from '../components/LandingPage/LandingPage';
@@ -16,13 +23,19 @@ const mapStateToProps = store => ({
   abv: store.getIn(['beer', 'abv']),
   ibu: store.getIn(['beer', 'ibu']),
   ebc: store.getIn(['beer', 'ebc']),
+
+  filtersVisible: store.getIn(['beer', 'filtersVisible']),
 });
 
 const mapDispatchToProps = {
-  loadBeers: getBeers,
-  onSearchChange: changeSearchData,
+  loadBeersConsecutive: getBeers,
+  loadBeersWithReplacement: replaceBeers,
   onFavoriteClicked: addFavorite,
   onRemoveFavoriteClicked: removeFavorite,
+  setSearchText: changeSearchText,
+  setAbv: changeAbv,
+  setIbu: changeIbu,
+  setEbc: changeEbc,
 };
 
 const LandingPage = connect(

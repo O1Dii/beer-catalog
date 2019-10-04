@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,33 +7,32 @@ import Filters from '../Filters/Filters';
 import './SearchBox.scss';
 
 function SearchBox({
-  className, onSubmit, searchText, abv, ibu, ebc,
+  className,
+  onSubmit,
+  searchText,
+  abv,
+  ibu,
+  ebc,
+  filtersVisible,
+  setSearchText,
+  setAbv,
+  setIbu,
+  setEbc,
 }) {
-  const [searchValue, setSearchValue] = useState(searchText);
-  const [newAbv, setAbv] = useState(abv);
-  const [newIbu, setIbu] = useState(ibu);
-  const [newEbc, setEbc] = useState(ebc);
-
   const onInputChange = useCallback(
     (e) => {
-      setSearchValue(e.target.value);
+      setSearchText(e.target.value);
     },
-    [setSearchValue],
+    [setSearchText],
   );
 
   const onFormSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      onSubmit(searchValue, newAbv, newIbu, newEbc);
+      onSubmit();
     },
-    [searchValue, newAbv, newIbu, newEbc, onSubmit],
+    [onSubmit],
   );
-
-  useEffect(() => {
-    setAbv(abv);
-    setIbu(ibu);
-    setEbc(ebc);
-  }, [searchText]);
 
   return (
     <form className={classNames('search-box', className)} onSubmit={onFormSubmit}>
@@ -42,18 +41,18 @@ function SearchBox({
           placeholder="Search beers..."
           type="text"
           className="search-box__input"
-          value={searchValue}
+          value={searchText}
           onChange={onInputChange}
         />
         <button type="submit" className="fas fa-search search-box__icon" />
       </label>
 
-      {searchText && (
+      {filtersVisible && (
         <Filters
           className="search-box__filters"
-          abv={newAbv}
-          ibu={newIbu}
-          ebc={newEbc}
+          abv={abv}
+          ibu={ibu}
+          ebc={ebc}
           setAbv={setAbv}
           setIbu={setIbu}
           setEbc={setEbc}
@@ -65,6 +64,10 @@ function SearchBox({
 
 SearchBox.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  setSearchText: PropTypes.func.isRequired,
+  setAbv: PropTypes.func.isRequired,
+  setIbu: PropTypes.func.isRequired,
+  setEbc: PropTypes.func.isRequired,
 
   className: PropTypes.string,
 
@@ -72,6 +75,7 @@ SearchBox.propTypes = {
   abv: PropTypes.number.isRequired,
   ibu: PropTypes.number.isRequired,
   ebc: PropTypes.number.isRequired,
+  filtersVisible: PropTypes.bool.isRequired,
 };
 
 SearchBox.defaultProps = {

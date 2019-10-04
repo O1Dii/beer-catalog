@@ -9,37 +9,47 @@ import VerticalBeerTemplate from '../../containers/VerticalBeerTemplate';
 import './LandingPage.scss';
 
 function LandingPage({
-  loadBeers,
+  loadBeersConsecutive,
+  loadBeersWithReplacement,
   beers,
   currentPage,
   hasMoreItems,
   searchText,
-  onSearchChange,
   onFavoriteClicked,
   onRemoveFavoriteClicked,
   abv,
   ibu,
   ebc,
+  filtersVisible,
+  setSearchText,
+  setAbv,
+  setIbu,
+  setEbc,
 }) {
   const onScroll = useCallback(() => {
-    loadBeers(currentPage);
-  }, [currentPage, loadBeers]);
+    loadBeersConsecutive(currentPage);
+  }, [loadBeersConsecutive, currentPage]);
 
   useEffect(() => {
-    if (currentPage < 2 || searchText) {
-      loadBeers();
+    if (beers.isEmpty()) {
+      loadBeersConsecutive();
     }
-  }, [currentPage, searchText, abv, ibu, ebc]);
+  }, []);
 
   return (
     <div className="landing-page">
       <SearchBox
         className="landing-page__search-box"
-        onSubmit={onSearchChange}
+        onSubmit={loadBeersWithReplacement}
         searchText={searchText}
         abv={abv}
         ibu={ibu}
         ebc={ebc}
+        filtersVisible={filtersVisible}
+        setSearchText={setSearchText}
+        setAbv={setAbv}
+        setIbu={setIbu}
+        setEbc={setEbc}
       />
       {beers.isEmpty() && <p className="landing-page__nothing-found-title">Nothing found</p>}
       <InfiniteScroll
@@ -68,8 +78,12 @@ function LandingPage({
 }
 
 LandingPage.propTypes = {
-  loadBeers: PropTypes.func.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
+  setSearchText: PropTypes.func.isRequired,
+  setAbv: PropTypes.func.isRequired,
+  setIbu: PropTypes.func.isRequired,
+  setEbc: PropTypes.func.isRequired,
+  loadBeersConsecutive: PropTypes.func.isRequired,
+  loadBeersWithReplacement: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
 
@@ -81,6 +95,7 @@ LandingPage.propTypes = {
   abv: PropTypes.number.isRequired,
   ibu: PropTypes.number.isRequired,
   ebc: PropTypes.number.isRequired,
+  filtersVisible: PropTypes.bool.isRequired,
 };
 
 export default LandingPage;

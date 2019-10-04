@@ -3,11 +3,14 @@ import Immutable from 'immutable';
 
 import {
   receiveBeers,
-  changeSearch,
+  changeSearchText,
+  changeAbv,
+  changeIbu,
+  changeEbc,
   addFavorite,
   removeFavorite,
-  replaceBeers,
-  clearBears,
+  clearBeers,
+  changeFiltersVisible,
 } from '../actions';
 import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
@@ -22,20 +25,13 @@ const main = handleActions(
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(parseInt(payload, 10))),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(parseInt(payload, 10)))),
 
-    [changeSearch]: (state, { payload }) => state
-      .set('searchText', payload.searchText)
-      .set('abv', payload.abv)
-      .set('ibu', payload.ibu)
-      .set('ebc', payload.ebc),
+    [changeSearchText]: (state, { payload }) => state.set('searchText', payload),
+    [changeAbv]: (state, { payload }) => state.set('abv', payload),
+    [changeIbu]: (state, { payload }) => state.set('ibu', payload),
+    [changeEbc]: (state, { payload }) => state.set('ebc', payload),
+    [changeFiltersVisible]: (state, { payload }) => state.set('filtersVisible', payload),
 
-    [replaceBeers]: (state, { payload }) => state
-      .set(
-        'beers',
-        Immutable.OrderedMap(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
-      )
-      .set('currentPage', 1),
-
-    [clearBears]: state => state.set('beers', Immutable.OrderedMap()).set('currentPage', 1),
+    [clearBeers]: state => state.set('beers', Immutable.OrderedMap()).set('currentPage', 1),
   },
   Immutable.Map({
     beers: Immutable.OrderedMap(),
@@ -45,6 +41,7 @@ const main = handleActions(
     ibu: MIN_IBU,
     ebc: MIN_EBC,
     currentPage: 1,
+    filtersVisible: false,
   }),
 );
 
