@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import SliderWithTitle from '../SliderWithTitle/SliderWithTitle';
 
 import './Filters.scss';
+import {
+  MIN_ABV, MIN_IBU, MIN_EBC, MAX_ABV, MAX_IBU, MAX_EBC,
+} from '../../constants';
 
 function Filters({
   className, abv, ibu, ebc, setAbv, setIbu, setEbc,
@@ -39,24 +42,24 @@ function Filters({
         title="Alcohol by volume"
         value={abv}
         onChange={onAbvChange}
-        min={2}
-        max={14}
+        min={MIN_ABV}
+        max={MAX_ABV}
       />
       <SliderWithTitle
         className="filters__slider-with-title"
         title="International Bitterness Units"
         value={ibu}
         onChange={onIbuChange}
-        min={0}
-        max={120}
+        min={MIN_IBU}
+        max={MAX_IBU}
       />
       <SliderWithTitle
         className="filters__slider-with-title"
         title="Color by EBC"
         value={ebc}
         onChange={onEbcChange}
-        min={4}
-        max={80}
+        min={MIN_EBC}
+        max={MAX_EBC}
       />
     </div>
   );

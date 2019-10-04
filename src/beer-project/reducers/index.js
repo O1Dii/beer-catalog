@@ -22,8 +22,8 @@ const main = handleActions(
       ))
       .update('currentPage', page => page + 1),
 
-    [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(parseInt(payload, 10))),
-    [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(parseInt(payload, 10)))),
+    [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
+    [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
 
     [changeSearchText]: (state, { payload }) => state.set('searchText', payload),
     [changeAbv]: (state, { payload }) => state.set('abv', payload),

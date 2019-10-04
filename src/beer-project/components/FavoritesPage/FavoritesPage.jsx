@@ -38,8 +38,8 @@ function FavoritesPage({
       ) : (
         <PagesList
           className="favorites-page__pages-list"
-          pagesCount={parseInt(pagesCount, 10)}
-          currentPage={parseInt(currentPage, 10)}
+          pagesCount={pagesCount}
+          currentPage={currentPage}
         />
       )}
     </div>
