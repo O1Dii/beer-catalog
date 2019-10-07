@@ -25,6 +25,7 @@ const mapStateToProps = store => ({
   ebc: store.getIn(['beer', 'ebc']),
 
   filtersVisible: store.getIn(['beer', 'filtersVisible']),
+  loading: store.getIn(['beer', 'loading']),
 });
 
 const mapDispatchToProps = {

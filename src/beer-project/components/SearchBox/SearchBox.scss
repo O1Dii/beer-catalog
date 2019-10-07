@@ -3,14 +3,19 @@
 .search-box {
   &__label {
     display: flex;
+
+    width: 80%;
+    margin: auto;
   }
 
   &__input {
-    padding: 5px;
+    padding: 8px;
 
     border: none;
     border-bottom: 1px solid $main-color;
     outline: none;
+
+    font-size: 14px;
 
     flex-grow: 1;
   }
@@ -19,6 +24,8 @@
     margin: auto 10px;
 
     color: $main-color;
+
+    font-size: 20px;
   }
 
   &__filters {

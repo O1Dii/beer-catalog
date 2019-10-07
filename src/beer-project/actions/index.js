@@ -75,7 +75,7 @@ export const replaceBeers = () => (dispatch, getStore) => {
     dispatch(resetFilters());
   }
 
-  dispatch(changeFiltersVisible(isSearchTextEmpty));
+  dispatch(changeFiltersVisible(!isSearchTextEmpty));
   dispatch(clearBeers());
   dispatch(getBeers());
 };
