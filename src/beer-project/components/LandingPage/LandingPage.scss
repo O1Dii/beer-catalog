@@ -26,10 +26,7 @@
   &__loading-spinner {
     margin: 20px;
 
-    animation-name: rotate;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    animation: 2s linear 0s infinite alternate rotate;
 
     color: $secondary-text-color;
 
