@@ -101,6 +101,7 @@ LandingPage.propTypes = {
   ibu: PropTypes.number.isRequired,
   ebc: PropTypes.number.isRequired,
   filtersVisible: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default LandingPage;
