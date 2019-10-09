@@ -20,6 +20,7 @@ function Filters({
         className="filters__slider-with-title"
         title="Alcohol by volume"
         value={abv}
+        step={0.1}
         onChange={setAbv}
         min={MIN_ABV}
         max={MAX_ABV}
@@ -28,6 +29,7 @@ function Filters({
         className="filters__slider-with-title"
         title="International Bitterness Units"
         value={ibu}
+        step={1}
         onChange={setIbu}
         min={MIN_IBU}
         max={MAX_IBU}
@@ -36,6 +38,7 @@ function Filters({
         className="filters__slider-with-title"
         title="Color by EBC"
         value={ebc}
+        step={1}
         onChange={setEbc}
         min={MIN_EBC}
         max={MAX_EBC}

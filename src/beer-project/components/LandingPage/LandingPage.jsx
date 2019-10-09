@@ -77,7 +77,7 @@ function LandingPage({
           .toList()}
       </InfiniteScroll>
 
-      {isLoading && <i className="landing-page__loading-spinner fas fa-asterisk" />}
+      {isLoading && <i className="landing-page__loading-spinner fas fa-spinner" />}
     </div>
   );
 }

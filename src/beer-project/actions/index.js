@@ -17,11 +17,17 @@ function getSearchParams(store) {
     beer_name: searchText,
   };
 
-  if (abv !== MIN_ABV || ibu !== MIN_IBU || ebc !== MIN_EBC) {
+  if (abv !== MIN_ABV) {
     searchParams.abv_gt = Math.max(abv - 0.1, MIN_ABV);
-    searchParams.abv_lt = abv + 1;
+    searchParams.abv_lt = abv + 0.1;
+  }
+
+  if (ibu !== MIN_IBU) {
     searchParams.ibu_gt = Math.max(ibu - 0.1, MIN_IBU);
     searchParams.ibu_lt = ibu + 1;
+  }
+
+  if (ebc !== MIN_EBC) {
     searchParams.ebc_gt = Math.max(ebc - 0.1, MIN_EBC);
     searchParams.ebc_lt = ebc + 1;
   }

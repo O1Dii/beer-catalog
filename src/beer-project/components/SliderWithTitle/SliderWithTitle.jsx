@@ -6,7 +6,7 @@ import { Slider } from '@material-ui/core';
 import './SliderWithTitle.scss';
 
 function SliderWithTitle({
-  title, min, max, className, value, onChange,
+  title, min, max, step, className, value, onChange,
 }) {
   const onValueChange = useCallback(
     (e, newValue) => {
@@ -20,7 +20,7 @@ function SliderWithTitle({
       <p className="slider-with-title__title">{title}</p>
       <p className="slider-with-title__value">{value}</p>
       <div className="slider-with-title__slider">
-        <Slider min={min} max={max} value={value} onChange={onValueChange} />
+        <Slider min={min} max={max} value={value} step={step} onChange={onValueChange} />
       </div>
     </div>
   );
