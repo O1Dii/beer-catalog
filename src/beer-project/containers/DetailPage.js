@@ -6,8 +6,9 @@ import Page from '../components/DetailPage/DetailPage';
 import { removeFavorite, addFavorite } from '../actions';
 
 const mapStateToProps = (store, { match }) => ({
-  favorite: isIdFavoriteSelector(store.get('beer'), match.params.id),
-  beer: getBeerById(store.get('beer'), match.params.id),
+  // parseInt is needed because both selectors work properly only with numbers
+  favorite: isIdFavoriteSelector(store.get('beer'), parseInt(match.params.id, 10)),
+  beer: getBeerById(store.get('beer'), parseInt(match.params.id, 10)),
 });
 
 const mapDispatchToProps = {

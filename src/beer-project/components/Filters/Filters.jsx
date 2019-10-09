@@ -12,27 +12,6 @@ import {
 function Filters({
   className, abv, ibu, ebc, setAbv, setIbu, setEbc,
 }) {
-  const onAbvChange = useCallback(
-    (e, newValue) => {
-      setAbv(newValue);
-    },
-    [setAbv],
-  );
-
-  const onIbuChange = useCallback(
-    (e, newValue) => {
-      setIbu(newValue);
-    },
-    [setIbu],
-  );
-
-  const onEbcChange = useCallback(
-    (e, newValue) => {
-      setEbc(newValue);
-    },
-    [setEbc],
-  );
-
   return (
     <div className={classNames('filters', className)}>
       <p className="filters__header">Filter results</p>
@@ -41,7 +20,7 @@ function Filters({
         className="filters__slider-with-title"
         title="Alcohol by volume"
         value={abv}
-        onChange={onAbvChange}
+        onChange={setAbv}
         min={MIN_ABV}
         max={MAX_ABV}
       />
@@ -49,7 +28,7 @@ function Filters({
         className="filters__slider-with-title"
         title="International Bitterness Units"
         value={ibu}
-        onChange={onIbuChange}
+        onChange={setIbu}
         min={MIN_IBU}
         max={MAX_IBU}
       />
@@ -57,7 +36,7 @@ function Filters({
         className="filters__slider-with-title"
         title="Color by EBC"
         value={ebc}
-        onChange={onEbcChange}
+        onChange={setEbc}
         min={MIN_EBC}
         max={MAX_EBC}
       />

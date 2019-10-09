@@ -17,13 +17,13 @@ import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
 const main = handleActions(
   {
-    [requestBeers]: state => state.set('loading', true),
+    [requestBeers]: state => state.set('isLoading', true),
     [receiveBeers]: (state, { payload }) => state
       .update('beers', oldData => oldData.concat(
         Immutable.Map(Immutable.fromJS(payload).map(item => [item.get('id'), item])),
       ))
       .update('currentPage', page => page + 1)
-      .set('loading', false),
+      .set('isLoading', false),
 
     [addFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.push(payload)),
     [removeFavorite]: (state, { payload }) => state.update('favoritesIds', list => list.delete(list.indexOf(payload))),
@@ -45,7 +45,7 @@ const main = handleActions(
     ebc: MIN_EBC,
     currentPage: 1,
     filtersVisible: false,
-    loading: false,
+    isLoading: false,
   }),
 );
 

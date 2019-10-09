@@ -25,7 +25,7 @@ function LandingPage({
   setAbv,
   setIbu,
   setEbc,
-  loading,
+  isLoading,
 }) {
   const onScroll = useCallback(() => {
     loadBeersConsecutive(currentPage);
@@ -52,7 +52,7 @@ function LandingPage({
         setIbu={setIbu}
         setEbc={setEbc}
       />
-      {!loading && beers.isEmpty() && (
+      {!isLoading && beers.isEmpty() && (
         <p className="landing-page__nothing-found-title">Nothing found</p>
       )}
       <InfiniteScroll
@@ -77,7 +77,7 @@ function LandingPage({
           .toList()}
       </InfiniteScroll>
 
-      {loading && <i className="landing-page__loading-spinner fas fa-asterisk" />}
+      {isLoading && <i className="landing-page__loading-spinner fas fa-asterisk" />}
     </div>
   );
 }
@@ -101,7 +101,7 @@ LandingPage.propTypes = {
   ibu: PropTypes.number.isRequired,
   ebc: PropTypes.number.isRequired,
   filtersVisible: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default LandingPage;
