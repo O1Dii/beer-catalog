@@ -1,45 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
 
-import HorizontalBeerTemplate from '../HorizontalBeerTemplate/HorizontalBeerTemplate';
-import PagesList from '../PagesList/PagesList';
-
 import './FavoritesPage.scss';
+import FavoritesPageBeers from '../FavoritesPageBeers/FavoritesPageBeers';
 
 function FavoritesPage({
   beers,
   onRemoveFavoriteClicked,
+  loadMissingBeers,
   pagesCount,
   currentPage,
   beersStart,
   beersEnd,
+  isLoading,
 }) {
+  useEffect(() => {
+    loadMissingBeers();
+  }, []);
+
   return (
     <div className="favorites-page">
       <h3 className="favorites-page__title">Your favorite beers</h3>
-      {beers
-        .slice(beersStart, beersEnd)
-        .map(item => (
-          <HorizontalBeerTemplate
-            className="favorites-page__item"
-            key={item.get('id')}
-            id={item.get('id')}
-            title={item.get('name')}
-            tagline={item.get('tagline')}
-            description={item.get('description')}
-            image={item.get('image_url') || undefined}
-            onRemoveFavoriteClicked={onRemoveFavoriteClicked}
-          />
-        ))
-        .toList()}
-      {beers.isEmpty() ? (
-        <p className="favorites-page__no-favorites-title">You don&apos;t have favorite beers yet</p>
+      {isLoading ? (
+        <i className="favorites-page__loading-spinner fas fa-spinner" />
       ) : (
-        <PagesList
-          className="favorites-page__pages-list"
+        <FavoritesPageBeers
+          beers={beers}
+          onRemoveFavoriteClicked={onRemoveFavoriteClicked}
           pagesCount={pagesCount}
           currentPage={currentPage}
+          beersStart={beersStart}
+          beersEnd={beersEnd}
         />
       )}
     </div>
@@ -48,6 +40,7 @@ function FavoritesPage({
 
 FavoritesPage.propTypes = {
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
+  loadMissingBeers: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
 
@@ -55,6 +48,7 @@ FavoritesPage.propTypes = {
   currentPage: PropTypes.number.isRequired,
   beersStart: PropTypes.number.isRequired,
   beersEnd: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default FavoritesPage;

@@ -14,16 +14,13 @@
     font-size: 35px;
   }
 
-  &__item {
-    width: 800px;
-    margin-bottom: 40px;
-  }
+  &__loading-spinner {
+    margin: 20px;
 
-  &__pages-list {
-    margin-top: -10px;
-  }
+    animation: 2s linear 0s infinite alternate rotate;
 
-  &__no-favorites-title {
-    font-size: 25px;
+    color: $secondary-text-color;
+
+    font-size: 20px;
   }
 }

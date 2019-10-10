@@ -1,11 +1,5 @@
 @import "../../variables.scss";
 
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .landing-page {
   display: flex;
   flex-direction: column;

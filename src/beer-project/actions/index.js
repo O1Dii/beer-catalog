@@ -5,6 +5,7 @@ import * as requests from '../requests';
 import {
   API_URL, MIN_ABV, MIN_IBU, MIN_EBC, ITEMS_PER_LANDING_PAGE,
 } from '../constants';
+import { getMissingFavoriteIds } from '../selectors';
 
 function getSearchParams(store) {
   const searchText = store.get('searchText');
@@ -48,6 +49,24 @@ export const getBeers = () => async (dispatch, getStore) => {
 
   try {
     const response = await requests.GET(API_URL, getSearchParams(store));
+    const json = await response.json();
+
+    dispatch(receiveBeers(json));
+  } catch (errorMessage) {
+    dispatch(errorBeers(errorMessage));
+  }
+};
+
+export const getMissingFavoriteBeers = () => async (dispatch, getStore) => {
+  const ids = getMissingFavoriteIds(getStore().get('beer'));
+  const params = {
+    ids: `${ids.join('|')}`,
+  };
+
+  dispatch(requestBeers());
+
+  try {
+    const response = await requests.GET(API_URL, params);
     const json = await response.json();
 
     dispatch(receiveBeers(json));

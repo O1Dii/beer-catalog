@@ -1,0 +1,14 @@
+.favorites-page-beers {
+  &__item {
+    width: 800px;
+    margin-bottom: 40px;
+  }
+
+  &__pages-list {
+    margin-top: -10px;
+  }
+
+  &__no-favorites-title {
+    font-size: 25px;
+  }
+}

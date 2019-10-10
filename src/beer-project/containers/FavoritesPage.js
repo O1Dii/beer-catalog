@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { removeFavorite } from '../actions';
+import { removeFavorite, getMissingFavoriteBeers } from '../actions';
 import { getFavoriteBeers } from '../selectors';
 
 import Page from '../components/FavoritesPage/FavoritesPage';
@@ -14,10 +14,12 @@ const mapStateToProps = (store, { match }) => ({
 
   beersStart: (match.params.page - 1) * ITEMS_PER_FAVORITE_PAGE,
   beersEnd: match.params.page * ITEMS_PER_FAVORITE_PAGE,
+  isLoading: store.getIn(['beer', 'isLoading']),
 });
 
 const mapDispatchToProps = {
   onRemoveFavoriteClicked: removeFavorite,
+  loadMissingBeers: getMissingFavoriteBeers,
 };
 
 const FavoritesPage = connect(
