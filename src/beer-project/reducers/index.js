@@ -12,6 +12,7 @@ import {
   clearBeers,
   changeFiltersVisible,
   requestBeers,
+  replaceFavorites,
 } from '../actions';
 import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
@@ -35,6 +36,8 @@ const main = handleActions(
     [changeFiltersVisible]: (state, { payload }) => state.set('filtersVisible', payload),
 
     [clearBeers]: state => state.set('beers', Immutable.OrderedMap()).set('currentPage', 1),
+
+    [replaceFavorites]: (state, { payload }) => state.set('favoritesIds', Immutable.List(payload)),
   },
   Immutable.Map({
     beers: Immutable.OrderedMap(),

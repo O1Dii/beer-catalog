@@ -11,6 +11,7 @@ import './LandingPage.scss';
 function LandingPage({
   loadBeersConsecutive,
   loadBeersWithReplacement,
+  loadFavorites,
   beers,
   currentPage,
   hasMoreItems,
@@ -32,6 +33,8 @@ function LandingPage({
   }, [loadBeersConsecutive, currentPage]);
 
   useEffect(() => {
+    loadFavorites();
+
     if (beers.isEmpty()) {
       loadBeersConsecutive();
     }
@@ -91,6 +94,7 @@ LandingPage.propTypes = {
   loadBeersWithReplacement: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
 

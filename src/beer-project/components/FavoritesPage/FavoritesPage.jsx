@@ -9,6 +9,7 @@ function FavoritesPage({
   beers,
   onRemoveFavoriteClicked,
   loadMissingBeers,
+  loadFavorites,
   pagesCount,
   currentPage,
   beersStart,
@@ -16,6 +17,7 @@ function FavoritesPage({
   isLoading,
 }) {
   useEffect(() => {
+    loadFavorites();
     loadMissingBeers();
   }, []);
 
@@ -41,6 +43,7 @@ function FavoritesPage({
 FavoritesPage.propTypes = {
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
   loadMissingBeers: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
 

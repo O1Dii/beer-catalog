@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import { List } from 'immutable';
 
 import * as requests from '../requests';
 
@@ -42,13 +43,13 @@ export const requestBeers = createAction('REQUEST_BEERS');
 export const receiveBeers = createAction('RECEIVE_BEERS');
 export const errorBeers = createAction('ERROR_BEERS');
 
-export const getBeers = () => async (dispatch, getStore) => {
+export const getBeers = params => async (dispatch, getStore) => {
   const store = getStore().get('beer');
 
   dispatch(requestBeers());
 
   try {
-    const response = await requests.GET(API_URL, getSearchParams(store));
+    const response = await requests.GET(API_URL, params || getSearchParams(store));
     const json = await response.json();
 
     dispatch(receiveBeers(json));
@@ -57,22 +58,21 @@ export const getBeers = () => async (dispatch, getStore) => {
   }
 };
 
-export const getMissingFavoriteBeers = () => async (dispatch, getStore) => {
+export const getMissingFavoriteBeers = () => (dispatch, getStore) => {
   const ids = getMissingFavoriteIds(getStore().get('beer'));
   const params = {
     ids: `${ids.join('|')}`,
   };
 
-  dispatch(requestBeers());
+  dispatch(getBeers(params));
+};
 
-  try {
-    const response = await requests.GET(API_URL, params);
-    const json = await response.json();
+export const getDetailPageBeer = id => (dispatch) => {
+  const params = {
+    ids: id,
+  };
 
-    dispatch(receiveBeers(json));
-  } catch (errorMessage) {
-    dispatch(errorBeers(errorMessage));
-  }
+  dispatch(getBeers(params));
 };
 
 export const clearBeers = createAction('CLEAR_BEERS');
@@ -107,3 +107,33 @@ export const replaceBeers = () => (dispatch, getStore) => {
 
 export const addFavorite = createAction('ADD_FAVORITE');
 export const removeFavorite = createAction('REMOVE_FAVORITE');
+export const replaceFavorites = createAction('REPLACE_FAVORITES');
+
+export const addFavoriteWithStorage = id => (dispatch) => {
+  const favoriteIds = localStorage.getItem('favorites');
+
+  if (favoriteIds) {
+    localStorage.setItem('favorites', JSON.stringify(JSON.parse(favoriteIds).concat(id)));
+  } else {
+    localStorage.setItem('favorites', JSON.stringify([id]));
+  }
+
+  dispatch(addFavorite(id));
+};
+
+export const removeFavoriteWithStorage = id => (dispatch) => {
+  const favoriteIdsList = JSON.parse(localStorage.getItem('favorites'));
+  favoriteIdsList.splice(favoriteIdsList.indexOf(id), 1);
+
+  localStorage.setItem('favorites', JSON.stringify(favoriteIdsList));
+
+  dispatch(removeFavorite(id));
+};
+
+export const loadFavoritesFromStorage = () => (dispatch) => {
+  const favoriteIds = localStorage.getItem('favorites');
+
+  if (favoriteIds) {
+    dispatch(replaceFavorites(JSON.parse(favoriteIds)));
+  }
+};

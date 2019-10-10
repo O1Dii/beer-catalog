@@ -2,13 +2,14 @@ import { connect } from 'react-redux';
 
 import {
   getBeers,
-  addFavorite,
-  removeFavorite,
   replaceBeers,
   changeAbv,
   changeIbu,
   changeEbc,
   changeSearchText,
+  addFavoriteWithStorage,
+  removeFavoriteWithStorage,
+  loadFavoritesFromStorage,
 } from '../actions';
 
 import Page from '../components/LandingPage/LandingPage';
@@ -29,10 +30,11 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = {
+  loadFavorites: loadFavoritesFromStorage,
   loadBeersConsecutive: getBeers,
   loadBeersWithReplacement: replaceBeers,
-  onFavoriteClicked: addFavorite,
-  onRemoveFavoriteClicked: removeFavorite,
+  onFavoriteClicked: addFavoriteWithStorage,
+  onRemoveFavoriteClicked: removeFavoriteWithStorage,
   setSearchText: changeSearchText,
   setAbv: changeAbv,
   setIbu: changeIbu,

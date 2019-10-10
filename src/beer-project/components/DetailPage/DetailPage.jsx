@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
 
@@ -12,8 +12,18 @@ import Method from '../Method/Method';
 import './DetailPage.scss';
 
 function DetailPage({
-  onFavoriteClicked, onRemoveFavoriteClicked, favorite, beer,
+  onFavoriteClicked,
+  onRemoveFavoriteClicked,
+  favorite,
+  beer,
+  loadFavorites,
+  loadBeer,
 }) {
+  useEffect(() => {
+    loadBeer();
+    loadFavorites();
+  }, []);
+
   return (
     <div className="detail-page">
       <BeerShortDescription
@@ -53,6 +63,8 @@ function DetailPage({
 DetailPage.propTypes = {
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
+  loadFavorites: PropTypes.func.isRequired,
+  loadBeer: PropTypes.func.isRequired,
 
   beer: PropTypes.instanceOf(Map).isRequired,
   favorite: PropTypes.bool.isRequired,
