@@ -16,48 +16,56 @@ function DetailPage({
   onRemoveFavoriteClicked,
   favorite,
   beer,
+  id,
   loadFavorites,
   loadBeer,
 }) {
   useEffect(() => {
-    loadBeer();
+    loadBeer(id);
     loadFavorites();
   }, []);
 
-  return (
-    <div className="detail-page">
-      <BeerShortDescription
-        className="detail-page__layout"
-        id={beer.get('id')}
-        title={beer.get('name')}
-        tagline={beer.get('tagline')}
-        description={beer.get('description')}
-        image={beer.get('image_url') || undefined}
-        favorite={favorite}
-        onFavoriteClicked={onFavoriteClicked}
-        onRemoveFavoriteClicked={onRemoveFavoriteClicked}
-      />
-
-      <div className="detail-page__top-details">
-        <Properties
-          className="detail-page__properties"
-          abv={beer.get('abv')}
-          ibu={beer.get('ibu')}
-          ebc={beer.get('ebc')}
+  if (beer) {
+    return (
+      <div className="detail-page">
+        <BeerShortDescription
+          className="detail-page__layout"
+          id={beer.get('id')}
+          title={beer.get('name')}
+          tagline={beer.get('tagline')}
+          description={beer.get('description')}
+          image={beer.get('image_url') || undefined}
+          favorite={favorite}
+          onFavoriteClicked={onFavoriteClicked}
+          onRemoveFavoriteClicked={onRemoveFavoriteClicked}
         />
 
-        <FoodPairing className="detail-page__food-pairing" foodPairing={beer.get('food_pairing')} />
+        <div className="detail-page__top-details">
+          <Properties
+            className="detail-page__properties"
+            abv={beer.get('abv')}
+            ibu={beer.get('ibu')}
+            ebc={beer.get('ebc')}
+          />
+
+          <FoodPairing
+            className="detail-page__food-pairing"
+            foodPairing={beer.get('food_pairing')}
+          />
+        </div>
+
+        <Brewing className="detail-page__brewing" brewing={beer.get('brewers_tips')} />
+
+        <div className="detail-page__bottom-details">
+          <Ingredients className="detail-page__ingredients" ingredients={beer.get('ingredients')} />
+
+          <Method className="detail-page__method" method={beer.get('method')} />
+        </div>
       </div>
+    );
+  }
 
-      <Brewing className="detail-page__brewing" brewing={beer.get('brewers_tips')} />
-
-      <div className="detail-page__bottom-details">
-        <Ingredients className="detail-page__ingredients" ingredients={beer.get('ingredients')} />
-
-        <Method className="detail-page__method" method={beer.get('method')} />
-      </div>
-    </div>
-  );
+  return null;
 }
 
 DetailPage.propTypes = {
@@ -66,8 +74,13 @@ DetailPage.propTypes = {
   loadFavorites: PropTypes.func.isRequired,
   loadBeer: PropTypes.func.isRequired,
 
-  beer: PropTypes.instanceOf(Map).isRequired,
+  beer: PropTypes.instanceOf(Map),
   favorite: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+};
+
+DetailPage.defaultProps = {
+  beer: null,
 };
 
 export default DetailPage;

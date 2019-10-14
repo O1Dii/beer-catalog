@@ -7,13 +7,13 @@ import SearchBox from '../SearchBox/SearchBox';
 import VerticalBeerTemplate from '../../containers/VerticalBeerTemplate';
 
 import './LandingPage.scss';
+import { ITEMS_PER_LANDING_PAGE } from '../../constants';
 
 function LandingPage({
   loadBeersConsecutive,
   loadBeersWithReplacement,
   loadFavorites,
   beers,
-  currentPage,
   hasMoreItems,
   searchText,
   onFavoriteClicked,
@@ -29,13 +29,13 @@ function LandingPage({
   isLoading,
 }) {
   const onScroll = useCallback(() => {
-    loadBeersConsecutive(currentPage);
-  }, [loadBeersConsecutive, currentPage]);
+    loadBeersConsecutive();
+  }, [loadBeersConsecutive]);
 
   useEffect(() => {
     loadFavorites();
 
-    if (beers.isEmpty()) {
+    if (beers.count() < ITEMS_PER_LANDING_PAGE) {
       loadBeersConsecutive();
     }
   }, []);
@@ -99,7 +99,6 @@ LandingPage.propTypes = {
   beers: PropTypes.instanceOf(Map).isRequired,
 
   hasMoreItems: PropTypes.bool.isRequired,
-  currentPage: PropTypes.number.isRequired,
   searchText: PropTypes.string.isRequired,
   abv: PropTypes.number.isRequired,
   ibu: PropTypes.number.isRequired,

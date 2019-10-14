@@ -1,5 +1,4 @@
 import { createAction } from 'redux-actions';
-import { List } from 'immutable';
 
 import * as requests from '../requests';
 

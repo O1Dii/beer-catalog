@@ -14,6 +14,7 @@ const mapStateToProps = (store, { match }) => ({
   // parseInt is needed because both selectors work properly only with numbers
   favorite: isIdFavoriteSelector(store.get('beer'), parseInt(match.params.id, 10)),
   beer: getBeerById(store.get('beer'), parseInt(match.params.id, 10)),
+  id: match.params.id,
 });
 
 const mapDispatchToProps = {

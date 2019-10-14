@@ -17,7 +17,6 @@ import Page from '../components/LandingPage/LandingPage';
 const mapStateToProps = store => ({
   beers: store.getIn(['beer', 'beers']),
 
-  currentPage: store.getIn(['beer', 'currentPage']),
   hasMoreItems: !store.getIn(['beer', 'searchText']),
 
   searchText: store.getIn(['beer', 'searchText']),
