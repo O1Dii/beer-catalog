@@ -25,7 +25,7 @@ function FavoritesPage({
     <div className="favorites-page">
       <h3 className="favorites-page__title">Your favorite beers</h3>
       {isLoading ? (
-        <i className="favorites-page__loading-spinner fas fa-spinner" />
+        <i className="favorites-page__loading-spinner fas fa-spinner fa-spin" />
       ) : (
         <FavoritesPageBeers
           beers={beers}

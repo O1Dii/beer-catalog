@@ -5,7 +5,7 @@ import * as requests from '../requests';
 import {
   API_URL, MIN_ABV, MIN_IBU, MIN_EBC, ITEMS_PER_LANDING_PAGE,
 } from '../constants';
-import { getMissingFavoriteIds } from '../selectors';
+import { storage } from '../utils';
 
 function getSearchParams(store) {
   const searchText = store.get('searchText');
@@ -57,8 +57,8 @@ export const getBeers = params => async (dispatch, getStore) => {
   }
 };
 
-export const getMissingFavoriteBeers = () => (dispatch, getStore) => {
-  const ids = getMissingFavoriteIds(getStore().get('beer'));
+export const getFavoriteBeers = () => (dispatch, getStore) => {
+  const ids = getStore().getIn(['beer', 'favoritesIds']);
   const params = {
     ids: `${ids.join('|')}`,
   };
@@ -109,30 +109,29 @@ export const removeFavorite = createAction('REMOVE_FAVORITE');
 export const replaceFavorites = createAction('REPLACE_FAVORITES');
 
 export const addFavoriteWithStorage = id => (dispatch) => {
-  const favoriteIds = localStorage.getItem('favorites');
-
-  if (favoriteIds) {
-    localStorage.setItem('favorites', JSON.stringify(JSON.parse(favoriteIds).concat(id)));
+  if (storage.has('favorites')) {
+    storage.set('favorites', storage.get('favorites').concat(id));
   } else {
-    localStorage.setItem('favorites', JSON.stringify([id]));
+    storage.set('favorites', [id]);
   }
 
   dispatch(addFavorite(id));
 };
 
 export const removeFavoriteWithStorage = id => (dispatch) => {
-  const favoriteIdsList = JSON.parse(localStorage.getItem('favorites'));
+  const favoriteIdsList = storage.get('favorites');
   favoriteIdsList.splice(favoriteIdsList.indexOf(id), 1);
 
-  localStorage.setItem('favorites', JSON.stringify(favoriteIdsList));
+  storage.set('favorites', favoriteIdsList);
 
   dispatch(removeFavorite(id));
 };
 
 export const loadFavoritesFromStorage = () => (dispatch) => {
-  const favoriteIds = localStorage.getItem('favorites');
+  console.log(storage);
 
-  if (favoriteIds) {
-    dispatch(replaceFavorites(JSON.parse(favoriteIds)));
+  if (storage.has('favorites')) {
+    console.log(storage.get('favorites'));
+    dispatch(replaceFavorites(storage.get('favorites')));
   }
 };
