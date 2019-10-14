@@ -22,7 +22,7 @@ const mapStateToProps = (store, { match }) => ({
 const mapDispatchToProps = {
   loadFavorites: loadFavoritesFromStorage,
   onRemoveFavoriteClicked: removeFavoriteWithStorage,
-  loadMissingBeers: getFavoriteBeers,
+  loadBeers: getFavoriteBeers,
 };
 
 const FavoritesPage = connect(
