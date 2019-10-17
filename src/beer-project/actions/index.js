@@ -128,10 +128,7 @@ export const removeFavoriteWithStorage = id => (dispatch) => {
 };
 
 export const loadFavoritesFromStorage = () => (dispatch) => {
-  console.log(storage);
-
   if (storage.has('favorites')) {
-    console.log(storage.get('favorites'));
     dispatch(replaceFavorites(storage.get('favorites')));
   }
 };
