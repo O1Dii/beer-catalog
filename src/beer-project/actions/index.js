@@ -64,7 +64,7 @@ export const getFavoriteBeers = () => (dispatch, getStore) => {
   dispatch(getBeers(params));
 };
 
-export const getLandingPageBeers = () => (dispatch, getStore) => {
+export const getBeersConsecutive = () => (dispatch, getStore) => {
   dispatch(getBeers(getSearchParams(getStore().get('beer'))));
 };
 

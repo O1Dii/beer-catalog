@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
+import Navigation from '../Navigation/Navigation';
 import FavoritesPage from '../../containers/FavoritesPage';
 import LandingPage from '../../containers/LandingPage';
 import DetailPage from '../../containers/DetailPage';
 
-function PagesRouter({ loadFavorites }) {
-  useEffect(() => {
-    loadFavorites();
-  });
-
+function BeersRouter({ loadFavorites }) {
   return (
-    <Router>
+    <>
+      <Navigation loadFavorites={loadFavorites} />
+
       <Route path="/" exact component={LandingPage} />
       <Route path="/favorites/:page/" component={FavoritesPage} />
       <Route path="/detail/:id/" component={DetailPage} />
-    </Router>
+    </>
   );
 }
 
-PagesRouter.propTypes = { loadFavorites: PropTypes.func.isRequired };
+BeersRouter.propTypes = { loadFavorites: PropTypes.func.isRequired };
 
-export default PagesRouter;
+export default BeersRouter;

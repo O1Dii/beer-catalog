@@ -12,17 +12,10 @@ import Method from '../Method/Method';
 import './DetailPage.scss';
 
 function DetailPage({
-  onFavoriteClicked,
-  onRemoveFavoriteClicked,
-  favorite,
-  beer,
-  id,
-  loadFavorites,
-  loadBeer,
+  onFavoriteClicked, onRemoveFavoriteClicked, favorite, beer, id, loadBeer,
 }) {
   useEffect(() => {
     loadBeer(id);
-    loadFavorites();
   }, []);
 
   if (beer) {
@@ -71,7 +64,6 @@ function DetailPage({
 DetailPage.propTypes = {
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
   loadBeer: PropTypes.func.isRequired,
 
   beer: PropTypes.instanceOf(Map),

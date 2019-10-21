@@ -2,15 +2,15 @@ import { connect } from 'react-redux';
 
 import { loadFavoritesFromStorage } from '../actions';
 
-import Router from '../components/PagesRouter/PagesRouter';
+import Router from '../components/BeersRouter/BeersRouter';
 
 const mapDispatchToProps = {
   loadFavorites: loadFavoritesFromStorage,
 };
 
-const PagesRouter = connect(
+const BeersRouter = connect(
   () => ({}),
   mapDispatchToProps,
 )(Router);
 
-export default PagesRouter;
+export default BeersRouter;

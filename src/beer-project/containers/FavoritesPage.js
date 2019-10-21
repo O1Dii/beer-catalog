@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { getFavoriteBeers, removeFavoriteWithStorage, loadFavoritesFromStorage } from '../actions';
+import { getFavoriteBeers, removeFavoriteWithStorage } from '../actions';
 import { getFavoriteBeersSelector } from '../selectors';
 
 import Page from '../components/FavoritesPage/FavoritesPage';
@@ -20,7 +20,6 @@ const mapStateToProps = (store, { match }) => ({
 });
 
 const mapDispatchToProps = {
-  loadFavorites: loadFavoritesFromStorage,
   onRemoveFavoriteClicked: removeFavoriteWithStorage,
   loadBeers: getFavoriteBeers,
 };

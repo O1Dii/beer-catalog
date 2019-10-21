@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import useOnClickOutside from 'use-onclickoutside';
 import classNames from 'classnames';
 import Navbar from '../Navbar/Navbar';
@@ -7,8 +8,12 @@ import SideMenu from '../SideMenu/SideMenu';
 
 import './Navigation.scss';
 
-function Navigation() {
+function Navigation({ loadFavorites }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
 
   const onMenuOpen = useCallback(() => {
     setOpen(!open);
@@ -35,5 +40,9 @@ function Navigation() {
     </div>
   );
 }
+
+Navigation.propTypes = {
+  loadFavorites: PropTypes.func.isRequired,
+};
 
 export default Navigation;

@@ -3,12 +3,7 @@ import { connect } from 'react-redux';
 import { isIdFavoriteSelector, getBeerByIdSelector } from '../selectors';
 
 import Page from '../components/DetailPage/DetailPage';
-import {
-  addFavoriteWithStorage,
-  removeFavoriteWithStorage,
-  loadFavoritesFromStorage,
-  getDetailPageBeer,
-} from '../actions';
+import { addFavoriteWithStorage, removeFavoriteWithStorage, getDetailPageBeer } from '../actions';
 
 const mapStateToProps = (store, { match }) => ({
   // parseInt is needed because both selectors work properly only with numbers
@@ -19,7 +14,6 @@ const mapStateToProps = (store, { match }) => ({
 
 const mapDispatchToProps = {
   loadBeer: getDetailPageBeer,
-  loadFavorites: loadFavoritesFromStorage,
   onFavoriteClicked: addFavoriteWithStorage,
   onRemoveFavoriteClicked: removeFavoriteWithStorage,
 };
