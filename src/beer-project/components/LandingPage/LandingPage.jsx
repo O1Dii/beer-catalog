@@ -12,7 +12,6 @@ import { ITEMS_PER_LANDING_PAGE } from '../../constants';
 function LandingPage({
   loadBeersConsecutive,
   loadBeersWithReplacement,
-  loadFavorites,
   beers,
   hasMoreItems,
   searchText,
@@ -33,8 +32,6 @@ function LandingPage({
   }, [loadBeersConsecutive]);
 
   useEffect(() => {
-    loadFavorites();
-
     if (beers.count() < ITEMS_PER_LANDING_PAGE) {
       loadBeersConsecutive();
     }
@@ -94,7 +91,6 @@ LandingPage.propTypes = {
   loadBeersWithReplacement: PropTypes.func.isRequired,
   onFavoriteClicked: PropTypes.func.isRequired,
   onRemoveFavoriteClicked: PropTypes.func.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
 
   beers: PropTypes.instanceOf(Map).isRequired,
 
