@@ -5,6 +5,16 @@
 
   color: $secondary-text-color;
 
+  &__loading-spinner {
+    width: 100%;
+
+    text-align: center;
+
+    color: $secondary-text-color;
+
+    font-size: 20px;
+  }
+
   &__properties {
     width: 350px;
     margin-right: 150px;

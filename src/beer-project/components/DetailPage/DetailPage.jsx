@@ -58,7 +58,11 @@ function DetailPage({
     );
   }
 
-  return null;
+  return (
+    <div className="detail-page">
+      <i className="detail-page__loading-spinner fas fa-spinner fa-spin" />
+    </div>
+  );
 }
 
 DetailPage.propTypes = {
