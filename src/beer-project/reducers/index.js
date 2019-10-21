@@ -16,6 +16,16 @@ import {
 } from '../actions';
 import { MIN_ABV, MIN_IBU, MIN_EBC } from '../constants';
 
+import { storage } from '../utils';
+
+const getInitialFavoriteBeersIds = () => {
+  if (storage.has('favorites')) {
+    return Immutable.List(storage.get('favorites'));
+  }
+
+  return Immutable.List();
+};
+
 const main = handleActions(
   {
     [requestBeers]: state => state.set('isLoading', true),
@@ -42,7 +52,7 @@ const main = handleActions(
   Immutable.Map({
     beers: Immutable.OrderedMap(),
     searchText: '',
-    favoritesIds: Immutable.List(),
+    favoritesIds: getInitialFavoriteBeersIds(),
     abv: MIN_ABV,
     ibu: MIN_IBU,
     ebc: MIN_EBC,

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
@@ -7,10 +6,10 @@ import FavoritesPage from '../../containers/FavoritesPage';
 import LandingPage from '../../containers/LandingPage';
 import DetailPage from '../../containers/DetailPage';
 
-function BeersRouter({ loadFavorites }) {
+function BeersRouter() {
   return (
     <>
-      <Navigation loadFavorites={loadFavorites} />
+      <Navigation />
 
       <Route path="/" exact component={LandingPage} />
       <Route path="/favorites/:page/" component={FavoritesPage} />
@@ -18,7 +17,5 @@ function BeersRouter({ loadFavorites }) {
     </>
   );
 }
-
-BeersRouter.propTypes = { loadFavorites: PropTypes.func.isRequired };
 
 export default BeersRouter;

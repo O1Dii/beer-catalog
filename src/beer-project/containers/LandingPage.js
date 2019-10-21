@@ -9,7 +9,6 @@ import {
   changeSearchText,
   addFavoriteWithStorage,
   removeFavoriteWithStorage,
-  loadFavoritesFromStorage,
 } from '../actions';
 
 import Page from '../components/LandingPage/LandingPage';
@@ -29,7 +28,6 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = {
-  loadFavorites: loadFavoritesFromStorage,
   loadBeersConsecutive: getBeersConsecutive,
   loadBeersWithReplacement: replaceBeers,
   onFavoriteClicked: addFavoriteWithStorage,

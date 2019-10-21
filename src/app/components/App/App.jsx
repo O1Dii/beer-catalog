@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import BeersRouter from '../../../beer-project/containers/BeersRouter';
+import BeersRouter from '../../../beer-project/components/BeersRouter/BeersRouter';
 
 import './App.scss';
 
