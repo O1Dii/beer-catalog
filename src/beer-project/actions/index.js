@@ -103,7 +103,7 @@ export const replaceBeers = () => (dispatch, getStore) => {
 
   dispatch(changeFiltersVisible(!isSearchTextEmpty));
   dispatch(clearBeers());
-  dispatch(getBeers());
+  dispatch(getBeersConsecutive());
 };
 
 export const addFavorite = createAction('ADD_FAVORITE');
