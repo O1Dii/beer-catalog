@@ -42,13 +42,11 @@ export const requestBeers = createAction('REQUEST_BEERS');
 export const receiveBeers = createAction('RECEIVE_BEERS');
 export const errorBeers = createAction('ERROR_BEERS');
 
-export const getBeers = params => async (dispatch, getStore) => {
-  const store = getStore().get('beer');
-
+export const getBeers = params => async (dispatch) => {
   dispatch(requestBeers());
 
   try {
-    const response = await requests.GET(API_URL, params || getSearchParams(store));
+    const response = await requests.GET(API_URL, params);
     const json = await response.json();
 
     dispatch(receiveBeers(json));
@@ -64,6 +62,10 @@ export const getFavoriteBeers = () => (dispatch, getStore) => {
   };
 
   dispatch(getBeers(params));
+};
+
+export const getLandingPageBeers = () => (dispatch, getStore) => {
+  dispatch(getBeers(getSearchParams(getStore().get('beer'))));
 };
 
 export const getDetailPageBeer = id => (dispatch) => {

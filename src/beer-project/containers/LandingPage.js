@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import {
-  getBeers,
+  getLandingPageBeers,
   replaceBeers,
   changeAbv,
   changeIbu,
@@ -30,7 +30,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = {
   loadFavorites: loadFavoritesFromStorage,
-  loadBeersConsecutive: getBeers,
+  loadBeersConsecutive: getLandingPageBeers,
   loadBeersWithReplacement: replaceBeers,
   onFavoriteClicked: addFavoriteWithStorage,
   onRemoveFavoriteClicked: removeFavoriteWithStorage,
