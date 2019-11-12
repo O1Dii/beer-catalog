@@ -1,0 +1,26 @@
+@import "../../../beer-project/variables.scss";
+
+body {
+  display: block;
+
+  margin: 0;
+
+  color: $main-text-color;
+
+  font-family: "Robo", sans-serif;
+}
+
+button {
+  color: inherit;
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.app {
+  position: relative;
+}

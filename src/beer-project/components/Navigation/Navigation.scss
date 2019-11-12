@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.navigation {
+  &__side-menu {
+    position: absolute;
+    left: -200px;
+
+    width: 200px;
+    height: 100%;
+    min-height: 100vh;
+
+    transition: left 500ms;
+  }
+
+  &__side-menu_open {
+    left: -1px;
+  }
+}

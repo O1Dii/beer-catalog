@@ -1,0 +1,41 @@
+@import "../../variables.scss";
+
+.pages-list {
+  display: flex;
+
+  padding: 0;
+
+  list-style-type: none;
+
+  &__prev,
+  &__next,
+  &__item {
+    display: flex;
+
+    width: 30px;
+    height: 30px;
+
+    color: $primary-color;
+    border: 1px solid $main-color;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__prev {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  &__next {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  &__prev_disabled,
+  &__next_disabled {
+    pointer-events: none;
+
+    background-color: $main-color;
+  }
+}

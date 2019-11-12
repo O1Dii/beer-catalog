@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.navbar {
+  display: flex;
+
+  padding: 15px;
+
+  background-color: $primary-color;
+
+  align-items: center;
+
+  &__title {
+    margin: 0;
+    margin-left: 10px;
+
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  &__menu-icon {
+    font-size: 16px;
+  }
+
+  &__options-icon {
+    margin-right: 40px;
+    margin-left: auto;
+  }
+}

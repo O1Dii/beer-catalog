@@ -1,0 +1,66 @@
+@import "../../variables.scss";
+
+.vertical-beer-template {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  &__image {
+    height: 50%;
+  }
+
+  &__lower-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 50%;
+
+    background-color: $template-background-color;
+
+    justify-content: space-between;
+  }
+
+  &__name {
+    overflow: hidden;
+
+    margin: 10px 20px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 30px;
+  }
+
+  &__description {
+    overflow: hidden;
+
+    margin: 0 20px;
+
+    font-size: 20px;
+  }
+
+  &__buttons-container {
+    margin: 20px;
+  }
+
+  &__open-button {
+    margin-right: 20px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: $main-text-color;
+
+    font-size: 15px;
+  }
+
+  &__favorite-button {
+    padding: 0;
+
+    text-transform: uppercase;
+
+    font-size: 15px;
+  }
+}

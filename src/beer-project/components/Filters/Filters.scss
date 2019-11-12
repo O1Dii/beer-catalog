@@ -1,0 +1,14 @@
+@import "../../variables.scss";
+
+.filters {
+  &__header {
+    margin: 10px;
+
+    text-align: center;
+
+    color: $secondary-text-color;
+
+    font-size: 18px;
+    font-weight: 800;
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.ingredients {
+  &__title {
+    margin: 0;
+
+    font-size: 35px;
+  }
+
+  &__list {
+    padding: 0;
+
+    list-style: none;
+
+    border-top: 1px solid $main-color;
+  }
+
+  &__list-item {
+    padding: 15px;
+
+    border: 1px solid $main-color;
+    border-top: none;
+  }
+
+  &__item-name {
+    margin: 0 10px 5px 0;
+
+    text-transform: capitalize;
+
+    font-size: 25px;
+  }
+}

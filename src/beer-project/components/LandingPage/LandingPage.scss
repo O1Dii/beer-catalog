@@ -1,0 +1,40 @@
+@import "../../variables.scss";
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  &__search-box {
+    width: 40%;
+    margin: 50px auto 30px;
+  }
+
+  &__nothing-found-title {
+    color: $secondary-text-color;
+
+    font-size: 25px;
+  }
+
+  &__loading-spinner {
+    margin: 20px;
+
+    color: $secondary-text-color;
+
+    font-size: 20px;
+  }
+
+  &__items-container {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    width: 450px;
+    height: 400px;
+    margin: 15px;
+  }
+}

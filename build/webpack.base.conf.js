@@ -1,5 +1,4 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
@@ -15,7 +14,7 @@ module.exports = {
     paths: PATHS,
   },
   entry: {
-    app: PATHS.src,
+    app: path.join(PATHS.src, 'index.jsx'),
   },
   output: {
     filename: `${PATHS.assets}js/[name].[hash].js`,
@@ -37,22 +36,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.j(s|sx)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: '/node_modules/',
         query: {
           presets: ['@babel/env', '@babel/react'],
-          plugins: [
-            ['@babel/plugin-proposal-decorators', { legacy: true }],
-            ['@babel/plugin-proposal-class-properties', { loose: true }],
-          ],
-        },
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
+          plugins: ['syntax-async-functions', 'transform-regenerator'],
         },
       },
       {
@@ -95,7 +84,6 @@ module.exports = {
       filename: './index.html',
       inject: true,
     }),
-    new CopyWebpackPlugin([{ from: `${PATHS.project}/img`, to: `${PATHS.assets}img` }]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
